@@ -18,7 +18,9 @@
  " Original repos on github
  NeoBundle 'tpope/vim-fugitive'
  NeoBundle 'tpope/vim-pathogen'
- NeoBundle 'scrooloose/nerdtree'
+" comment NERDTree out because some of the code have been modified
+" use the modified version instead.
+"NeoBundle 'scrooloose/nerdtree'
  NeoBundle 'scrooloose/syntastic'
  " vim-scripts repos
  NeoBundle 'bufexplorer.zip'
@@ -198,7 +200,7 @@ set hlsearch        "Highlight search things
 set magic           "Set magic on
 
 set showmatch       "show matching bracets
-if v:version >= 730
+if v:version >= 703
   set colorcolumn=80  "show column highlight at col 80
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
