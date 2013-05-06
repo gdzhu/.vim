@@ -13,10 +13,16 @@ usage
 -----
 
 clone the git by:  
-     `git clone https://github.com/gdzhu/vimrc`  
+     `git clone --recursive https://github.com/gdzhu/vimrc`  
 then copy .vim directory and .vimrc to your home folder.  
 
-always remember to backup your own stuff.
+NOTE: the `--recursive` option is required to clone the submodule in the repo, or you need to update the submodule manually by  
+`git submodule init`  
+and  
+`git submodule update`  
+in the cloned repo dir.
+
+**always remember to backup your own stuff.
 
 plugin list
 -----------
