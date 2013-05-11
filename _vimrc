@@ -18,9 +18,9 @@
  " Original repos on github
  NeoBundle 'tpope/vim-fugitive'
  NeoBundle 'tpope/vim-pathogen'
-" comment NERDTree out because some of the code have been modified
-" use the modified version instead.
-"NeoBundle 'scrooloose/nerdtree'
+ " comment NERDTree out because some of the code have been modified
+ " use the modified version instead.
+ "NeoBundle 'scrooloose/nerdtree'
  NeoBundle 'scrooloose/syntastic'
  " vim-scripts repos
  NeoBundle 'bufexplorer.zip'
@@ -602,11 +602,20 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
    """"""""""""""""""""""""""""""
    " taglist setting
    """"""""""""""""""""""""""""""
-   let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-   let Tlist_Show_One_File = 1
-   let Tlist_Use_Right_Window = 1
-   let Tlist_WinWidth = 40
+   "let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+   "let Tlist_Show_One_File = 1
+   "let Tlist_Use_Right_Window = 1
+   "let Tlist_WinWidth = 40
    nmap <F12> <Esc>:!ctags -R *<CR>
+
+
+   """"""""""""""""""""""""""""""
+   " Tagbar setting
+   """"""""""""""""""""""""""""""
+   let g:tagbar_ctags_bin = '/usr/bin/ctags'
+   let g:tagbar_autoshowtag = 1
+   let g:tagbar_width = 40
+   let g:tagbar_expand = 1
 
    """"""""""""""""""""""""""""""
    " NERDTree setting
@@ -635,10 +644,10 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 
    nmap <C-W><C-F> :FirstExplorerWindow<cr>
    nmap <C-W><C-B> :BottomExplorerWindow<cr>
-   nmap <silent> <F8> :WMToggle<cr> :TlistToggle<cr>
+   nmap <silent> <F8> :WMToggle<cr> :TagbarToggle<cr>
 
-   au VimEnter * WMToggle
-   au VimEnter * TlistToggle
+   au VimEnter * nested WMToggle
+   au VimEnter * nested :call tagbar#autoopen(0)
 
    function! Close()
      let i = 1
@@ -646,7 +655,7 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
      while i <= winnr('$')
        let Name = bufname(winbufnr(i))
        if Name != "__NERD_Tree__" &&
-        \ Name != "__Tag_List__" &&
+        \ Name != "__Tagbar__" &&
         \ Name != "[Buf List]"
          let flag = 1
        endif
