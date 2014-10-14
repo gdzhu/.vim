@@ -668,6 +668,10 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
    endfunction
 
    autocmd bufenter * call Close()
+   
+   " switch to main edit buffer
+   "autocmd VimEnter * nested if bufexists(1) == 1 | sb 1 | endif
+   autocmd VimEnter * nested sb "@%"
 
    """"""""""""""""""""""""""""""
    " lookupfile setting
