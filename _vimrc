@@ -18,14 +18,10 @@
  " Original repos on github
  NeoBundle 'tpope/vim-fugitive'
  NeoBundle 'tpope/vim-pathogen'
- " comment NERDTree out because some of the code have been modified
- " use the modified version instead.
  NeoBundle 'scrooloose/nerdtree'
  NeoBundle 'jistr/vim-nerdtree-tabs'          " add some featues to NERDTree
  NeoBundle 'scrooloose/syntastic'
  " vim-scripts repos
- " bufexplorer is replaced with airline
- " NeoBundle 'bufexplorer.zip' 
  NeoBundle 'bling/vim-airline'                " status line plugin
  NeoBundle 'jmcantrell/vim-virtualenv'        " work with python venv
  NeoBundle 'FSwitch'                          " switch between associated files, eg, .h and .cpp
@@ -38,18 +34,8 @@
  NeoBundle 'snipMate'                         " snippet plugin
  NeoBundle 'surround.vim'                     " change surroundings quickly
  NeoBundle 'Tagbar'
- " replaced with tagbar because taglist does not work well with winmanager
- " NeoBundle 'taglist.vim'
  NeoBundle 'The-NERD-Commenter'
  NeoBundle 'Vimball'
- " not needed because of airline
- " NeoBundle 'winmanager--Fox'
- " Non github repos
-    "NeoBundle 'git://git.wincent.com/command-t.git'
- " Non git repos
-    "NeoBundle 'https://bitbucket.org/ns9tks/vim-fuzzyfinder'
-
- " ...
 
  filetype plugin indent on     " Required!
  "
@@ -99,41 +85,6 @@ nmap <silent> <leader>qa :qa<cr>
 
 "Fast remove highlight search
 nmap <silent> <leader><cr> :noh<cr>
-
-" Switch to buffer according to file name
-function! SwitchToBuf(filename)
-    "let fullfn = substitute(a:filename, "^\\~/", $HOME . "/", "")
-    " find in current tab
-    let bufwinnr = bufwinnr(a:filename)
-    if bufwinnr != -1
-        exec bufwinnr . "wincmd w"
-        return
-    else
-        " find in each tab
-        tabfirst
-        let tab = 1
-        while tab <= tabpagenr("$")
-            let bufwinnr = bufwinnr(a:filename)
-            if bufwinnr != -1
-                exec "normal " . tab . "gt"
-                exec bufwinnr . "wincmd w"
-                return
-            endif
-            tabnext
-            let tab = tab + 1
-        endwhile
-        " not exist, new tab
-        exec "tabnew " . a:filename
-    endif
-endfunction
-
-"Fast edit vimrc
-"Fast reloading of the .vimrc
-map <silent> <leader>ss :source ~/.vimrc<cr>
-"Fast editing of .vimrc
-map <silent> <leader>ee :call SwitchToBuf("~/.vimrc")<cr>
-"When .vimrc is edited, reload it
-"autocmd! bufwritepost .vimrc source ~/.vimrc
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colors and Fonts
@@ -225,18 +176,13 @@ nmap <C-l> <C-W>l
 "Tab configuration
 map <leader>tn :tabnew<cr>
 map <leader>te :tabedit
-map <leader>tc :tabclose<cr> :WMToggle<cr>
+map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 try
   set switchbuf=useopen
   set stal=1
 catch
 endtry
-
-"Moving fast to front, back and 2 sides ;)
-" not working under ubuntu because of the conflict of Modifier key
-" imap <m-$> <esc>$a
-" imap <m-0> <esc>0i
 
 "Switch to current dir
 map <silent> <leader>cd :cd %:p:h<cr>
@@ -267,8 +213,8 @@ cnoremap <C-K>    <C-U>
 " Buffer realted
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Open a dummy buffer for paste
-" map <leader>es :tabnew<cr>:setl buftype=nofile<cr>
-" map <leader>ec :tabnew ~/tmp/scratch.txt<cr>
+map <leader>es :tabnew<cr>:setl buftype=nofile<cr>
+map <leader>ec :tabnew ~/tmp/scratch.txt<cr>
 
 "Restore cursor to file position in previous editing session
 set viminfo='10,\"100,:20,n~/.viminfo
@@ -431,24 +377,6 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
    nmap <leader>8 <Plug>AirlineSelectTab8
    nmap <leader>9 <Plug>AirlineSelectTab9
 
-   """"""""""""""""""""""""""""""
-   " super tab
-   """"""""""""""""""""""""""""""
-   " let g:SuperTabPluginLoaded=1 " Avoid load SuperTab Plugin
-
-   """"""""""""""""""""""""""""""
-   " bufexplorer setting
-   """"""""""""""""""""""""""""""
-   "  let g:bufExplorerDefaultHelp=1       " Do not show default help.
-   "  let g:bufExplorerShowRelativePath=1  " Show relative paths.
-   "  let g:bufExplorerShowNoName=1        " Show "No Name" buffers.
-   "  let g:bufExplorerSortBy='number'     " Sort by the buffer's number.
-   "  let g:bufExplorerSplitHorzSize=20    " New split window is n rows high.
-   "  let g:bufExplorerSplitType=''        " Split horizontally
-   "  let g:bufExplorerOpenMode=0          " Open in current window
-   "  let g:bufExplorerSplitBelow=1        " Split below current window
-   "  let g:bufExplorerMaxHeight=25        " Max height
-
    " """"""""""""""""""""""""""""""
    " " NERDTree setting
    " """"""""""""""""""""""""""""""
@@ -473,25 +401,7 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 
    au BufEnter * nested :call tagbar#autoopen(0)
 
-   """"""""""""""""""""""""""""""
-   " winmanager setting
-   """"""""""""""""""""""""""""""
-   " let g:winManagerWindowLayout = "NERDTree|BufExplorer"
-   " let g:winManagerWidth = 25
-   " "let g:winManagerAutoOpen = 1    call manually due to focus issue
-   " let g:defaultExplorer = 0
-   " let g:persistentBehaviour = 0
-
-   " nmap <C-W><C-F> :FirstExplorerWindow<cr>
-   " nmap <C-W><C-B> :BottomExplorerWindow<cr>
-   " nmap <silent> <F8> :WMToggle<cr> :TagbarToggle<cr>
-
-   " au VimEnter *  WMToggle
-   " au VimEnter *  :call tagbar#autoopen(0)
-
-
    " switch to main edit buffer
-   "autocmd VimEnter * nested if bufexists(1) == 1 | sb 1 | endif
    autocmd VimEnter * nested sb "@%"
 
    """"""""""""""""""""""""""""""
@@ -684,194 +594,3 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 " Mark as loaded
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:vimrc_loaded = 1
-
-
-
-
-
-" replaced with airline status line plugin  <-- gdzhu
-"  """"""""""""""""""""""""""""""
-"  " Statusline
-"  """"""""""""""""""""""""""""""
-"  "statusline setup
-"  set statusline =%#identifier#
-"  set statusline+=[%t]    "tail of the filename
-"  set statusline+=%*
-"
-"  "display a warning if fileformat isnt unix
-"  set statusline+=%#warningmsg#
-"  set statusline+=%{&ff!='unix'?'['.&ff.']':''}
-"  set statusline+=%*
-"
-"  "display a warning if file encoding isnt utf-8
-"  set statusline+=%#warningmsg#
-"  set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
-"  set statusline+=%*
-"
-"  set statusline+=%h      "help file flag
-"  set statusline+=%y      "filetype
-"
-"  "read only flag
-"  set statusline+=%#identifier#
-"  set statusline+=%r
-"  set statusline+=%*
-"
-"  "modified flag
-"  set statusline+=%#identifier#
-"  set statusline+=%m
-"  set statusline+=%*
-"
-"  set statusline+=%{fugitive#statusline()}
-"
-"  "display a warning if &et is wrong, or we have mixed-indenting
-"  set statusline+=%#error#
-"  set statusline+=%{StatuslineTabWarning()}
-"  set statusline+=%*
-"
-"  set statusline+=%{StatuslineTrailingSpaceWarning()}
-"
-"  set statusline+=%{StatuslineLongLineWarning()}
-"
-"  set statusline+=%#warningmsg#
-"  set statusline+=%{SyntasticStatuslineFlag()}
-"  set statusline+=%*
-"
-"  "display a warning if &paste is set
-"  set statusline+=%#error#
-"  set statusline+=%{&paste?'[paste]':''}
-"  set statusline+=%*
-"
-"  set statusline+=%=      "left/right separator
-"  set statusline+=%{StatuslineCurrentHighlight()}\ \ "current highlight
-"  set statusline+=%c,     "cursor column
-"  set statusline+=%l/%L   "cursor line/total lines
-"  set statusline+=\ %P    "percent through file
-"  set laststatus=2
-"
-"  "recalculate the trailing whitespace warning when idle, and after saving
-"  autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
-"
-"  "return '[\s]' if trailing white space is detected
-"  "return '' otherwise
-"  function! StatuslineTrailingSpaceWarning()
-"      if !exists("b:statusline_trailing_space_warning")
-"
-"          if !&modifiable
-"              let b:statusline_trailing_space_warning = ''
-"              return b:statusline_trailing_space_warning
-"          endif
-"
-"          if search('\s\+$', 'nw') != 0
-"              let b:statusline_trailing_space_warning = '[\s]'
-"          else
-"              let b:statusline_trailing_space_warning = ''
-"          endif
-"      endif
-"      return b:statusline_trailing_space_warning
-"  endfunction
-"
-"
-"  "return the syntax highlight group under the cursor ''
-"  function! StatuslineCurrentHighlight()
-"      let name = synIDattr(synID(line('.'),col('.'),1),'name')
-"      if name == ''
-"          return ''
-"      else
-"          return '[' . name . ']'
-"      endif
-"  endfunction
-"
-"  "recalculate the tab warning flag when idle and after writing
-"  autocmd cursorhold,bufwritepost * unlet! b:statusline_tab_warning
-"
-"  "return '[&et]' if &et is set wrong
-"  "return '[mixed-indenting]' if spaces and tabs are used to indent
-"  "return an empty string if everything is fine
-"  function! StatuslineTabWarning()
-"      if !exists("b:statusline_tab_warning")
-"          let b:statusline_tab_warning = ''
-"
-"          if !&modifiable
-"              return b:statusline_tab_warning
-"          endif
-"
-"          let tabs = search('^\t', 'nw') != 0
-"
-"          "find spaces that arent used as alignment in the first indent column
-"          let spaces = search('^ \{' . &ts . ',}[^\t]', 'nw') != 0
-"
-"          if tabs && spaces
-"              let b:statusline_tab_warning =  '[mixed-indenting]'
-"          elseif (spaces && !&et) || (tabs && &et)
-"              let b:statusline_tab_warning = '[&et]'
-"          endif
-"      endif
-"      return b:statusline_tab_warning
-"  endfunction
-"
-"  "recalculate the long line warning when idle and after saving
-"  autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
-"
-"  "return a warning for "long lines" where "long" is either &textwidth or 80 (if
-"  "no &textwidth is set)
-"  "
-"  "return '' if no long lines
-"  "return '[#x,my,$z] if long lines are found, were x is the number of long
-"  "lines, y is the median length of the long lines and z is the length of the
-"  "longest line
-"  function! StatuslineLongLineWarning()
-"      if !exists("b:statusline_long_line_warning")
-"
-"          if !&modifiable
-"              let b:statusline_long_line_warning = ''
-"              return b:statusline_long_line_warning
-"          endif
-"
-"          let long_line_lens = s:LongLines()
-"
-"          if len(long_line_lens) > 0
-"              let b:statusline_long_line_warning = "[" .
-"                          \ '#' . len(long_line_lens) . "," .
-"                          \ 'm' . s:Median(long_line_lens) . "," .
-"                          \ '$' . max(long_line_lens) . "]"
-"          else
-"              let b:statusline_long_line_warning = ""
-"          endif
-"      endif
-"      return b:statusline_long_line_warning
-"  endfunction
-"
-"  "return a list containing the lengths of the long lines in this buffer
-"  function! s:LongLines()
-"      let threshold = (&tw ? &tw : 80)
-"      let spaces = repeat(" ", &ts)
-"      let line_lens = map(getline(1,'$'),
-"                        \ 'len(substitute(v:val, "\\t", spaces, "g"))')
-"      return filter(line_lens, 'v:val > threshold')
-"  endfunction
-"
-"  "find the median of the given array of numbers
-"  function! s:Median(nums)
-"      let nums = sort(a:nums)
-"      let l = len(nums)
-"
-"      if l % 2 == 1
-"          let i = (l-1) / 2
-"          return nums[i]
-"      else
-"          return (nums[l/2] + nums[(l/2)-1]) / 2
-"      endif
-"  endfunction
-"
-"  "http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/
-"  "hacks from above (the url, not jesus) to delete fugitive buffers when we
-"  "leave them - otherwise the buffer list gets poluted
-"  "
-"  "add a mapping on .. to view parent tree
-"  autocmd BufReadPost fugitive://* set bufhidden=delete
-"  autocmd BufReadPost fugitive://*
-"    \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-"    \   nnoremap <buffer> .. :edit %:h<CR> |
-"    \ endif
-"
-"
