@@ -20,10 +20,12 @@
  NeoBundle 'tpope/vim-pathogen'
  " comment NERDTree out because some of the code have been modified
  " use the modified version instead.
- "NeoBundle 'scrooloose/nerdtree'
+ NeoBundle 'scrooloose/nerdtree'
+ NeoBundle 'jistr/vim-nerdtree-tabs'          " add some featues to NERDTree
  NeoBundle 'scrooloose/syntastic'
  " vim-scripts repos
- NeoBundle 'bufexplorer.zip'
+ " bufexplorer is replaced with airline
+ " NeoBundle 'bufexplorer.zip' 
  NeoBundle 'bling/vim-airline'                " status line plugin
  NeoBundle 'jmcantrell/vim-virtualenv'        " work with python venv
  NeoBundle 'FSwitch'                          " switch between associated files, eg, .h and .cpp
@@ -40,7 +42,8 @@
  " NeoBundle 'taglist.vim'
  NeoBundle 'The-NERD-Commenter'
  NeoBundle 'Vimball'
- NeoBundle 'winmanager--Fox'
+ " not needed because of airline
+ " NeoBundle 'winmanager--Fox'
  " Non github repos
     "NeoBundle 'git://git.wincent.com/command-t.git'
  " Non git repos
@@ -412,7 +415,21 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
    let g:airline_symbols.space = "\ua0"
    let g:airline_powerline_fonts = 1
    let g:airline_theme='murmur'
+   " Enable the list of buffers
+   let g:airline#extensions#tabline#enabled = 1
+   " " Show just the filename
+   let g:airline#extensions#tabline#fnamemod = ':t'
+   let g:airline#extensions#tabline#buffer_idx_mode = 1
 
+   nmap <leader>1 <Plug>AirlineSelectTab1
+   nmap <leader>2 <Plug>AirlineSelectTab2
+   nmap <leader>3 <Plug>AirlineSelectTab3
+   nmap <leader>4 <Plug>AirlineSelectTab4
+   nmap <leader>5 <Plug>AirlineSelectTab5
+   nmap <leader>6 <Plug>AirlineSelectTab6
+   nmap <leader>7 <Plug>AirlineSelectTab7
+   nmap <leader>8 <Plug>AirlineSelectTab8
+   nmap <leader>9 <Plug>AirlineSelectTab9
 
    """"""""""""""""""""""""""""""
    " super tab
@@ -422,15 +439,26 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
    """"""""""""""""""""""""""""""
    " bufexplorer setting
    """"""""""""""""""""""""""""""
-   let g:bufExplorerDefaultHelp=1       " Do not show default help.
-   let g:bufExplorerShowRelativePath=1  " Show relative paths.
-   let g:bufExplorerShowNoName=1        " Show "No Name" buffers.
-   let g:bufExplorerSortBy='number'     " Sort by the buffer's number.
-   let g:bufExplorerSplitHorzSize=20    " New split window is n rows high.
-   let g:bufExplorerSplitType=''        " Split horizontally
-   let g:bufExplorerOpenMode=0          " Open in current window
-   let g:bufExplorerSplitBelow=1        " Split below current window
-   let g:bufExplorerMaxHeight=25        " Max height
+   "  let g:bufExplorerDefaultHelp=1       " Do not show default help.
+   "  let g:bufExplorerShowRelativePath=1  " Show relative paths.
+   "  let g:bufExplorerShowNoName=1        " Show "No Name" buffers.
+   "  let g:bufExplorerSortBy='number'     " Sort by the buffer's number.
+   "  let g:bufExplorerSplitHorzSize=20    " New split window is n rows high.
+   "  let g:bufExplorerSplitType=''        " Split horizontally
+   "  let g:bufExplorerOpenMode=0          " Open in current window
+   "  let g:bufExplorerSplitBelow=1        " Split below current window
+   "  let g:bufExplorerMaxHeight=25        " Max height
+
+   " """"""""""""""""""""""""""""""
+   " " NERDTree setting
+   " """"""""""""""""""""""""""""""
+   " "nerdtree settings
+   let g:NERDTreeMouseMode = 2
+   let g:NERDTreeWinSize = 25
+   let g:NERDTreeShowHidden = 1
+   let g:NERDTreeMinimalUI = 1
+   let g:nerdtree_tabs_open_on_console_startup = 1
+   let g:nerdtree_tabs_autofind = 1
 
    """"""""""""""""""""""""""""""
    " Tagbar setting
@@ -439,61 +467,28 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
    let g:tagbar_ctags_bin = '/usr/bin/ctags'
    let g:tagbar_autoshowtag = 1
    let g:tagbar_width = 30
+   let g:tagbar_compact = 1
+   let g:tagbar_show_visibility = 1
    let g:tagbar_expand = 1
 
-   """"""""""""""""""""""""""""""
-   " NERDTree setting
-   """"""""""""""""""""""""""""""
-   "nerdtree settings
-   let g:NERDTreeMouseMode = 2
-   let g:NERDTreeWinSize = 25
-
-   let NERDTree_title = '__NERD_Tree__'
-   function! NERDTree_Start()
-    exe "NERDTree"
-   endfunction
-
-   function! NERDTree_IsValid()
-    return 1
-   endfunction
+   au BufEnter * nested :call tagbar#autoopen(0)
 
    """"""""""""""""""""""""""""""
    " winmanager setting
    """"""""""""""""""""""""""""""
-   let g:winManagerWindowLayout = "NERDTree|BufExplorer"
-   let g:winManagerWidth = 25
-   "let g:winManagerAutoOpen = 1    call manually due to focus issue
-   let g:defaultExplorer = 0
-   let g:persistentBehaviour = 0
+   " let g:winManagerWindowLayout = "NERDTree|BufExplorer"
+   " let g:winManagerWidth = 25
+   " "let g:winManagerAutoOpen = 1    call manually due to focus issue
+   " let g:defaultExplorer = 0
+   " let g:persistentBehaviour = 0
 
-   nmap <C-W><C-F> :FirstExplorerWindow<cr>
-   nmap <C-W><C-B> :BottomExplorerWindow<cr>
-   nmap <silent> <F8> :WMToggle<cr> :TagbarToggle<cr>
+   " nmap <C-W><C-F> :FirstExplorerWindow<cr>
+   " nmap <C-W><C-B> :BottomExplorerWindow<cr>
+   " nmap <silent> <F8> :WMToggle<cr> :TagbarToggle<cr>
 
-   au VimEnter *  WMToggle
-   au VimEnter *  :call tagbar#autoopen(0)
-   au TabEnter * WMToggle
-   au TabEnter * :call tagbar#autoopen(0)
+   " au VimEnter *  WMToggle
+   " au VimEnter *  :call tagbar#autoopen(0)
 
-   function! CloseBuf()
-     let i = 1
-     let flag = 0
-     while i <= winnr('$')
-       let Name = bufname(winbufnr(i))
-       if Name != "__NERD_Tree__" &&
-        \ Name != "__Tagbar__" &&
-        \ Name != "[Buf List]"
-         let flag = 1
-       endif
-       let i = i + 1
-     endwhile
-     if flag == 0
-       bdelete
-       qa
-     endif
-   endfunction
-
-   autocmd bufenter * call CloseBuf()
 
    " switch to main edit buffer
    "autocmd VimEnter * nested if bufexists(1) == 1 | sb 1 | endif
