@@ -342,21 +342,20 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
    let g:airline_symbols.space = "\ua0"
    let g:airline_powerline_fonts = 1
    let g:airline_theme='murmur'
-   " Enable the list of buffers
-   let g:airline#extensions#tabline#enabled = 1
-   " " Show just the filename
-   let g:airline#extensions#tabline#fnamemod = ':t'
-   let g:airline#extensions#tabline#buffer_idx_mode = 1
 
-   nmap <leader>1 <Plug>AirlineSelectTab1
-   nmap <leader>2 <Plug>AirlineSelectTab2
-   nmap <leader>3 <Plug>AirlineSelectTab3
-   nmap <leader>4 <Plug>AirlineSelectTab4
-   nmap <leader>5 <Plug>AirlineSelectTab5
-   nmap <leader>6 <Plug>AirlineSelectTab6
-   nmap <leader>7 <Plug>AirlineSelectTab7
-   nmap <leader>8 <Plug>AirlineSelectTab8
-   nmap <leader>9 <Plug>AirlineSelectTab9
+   " tabline enabled
+   let g:airline#extensions#tabline#enabled = 1
+   " not show buffers
+   let g:airline#extensions#tabline#show_buffers = 0
+   " display only tab number
+   let g:airline#extensions#tabline#tab_nr_type = 1
+   " not show tab type on the right of the screen
+   let g:airline#extensions#tabline#show_tab_type = 0
+   " not show close button on the right of the screen
+   let g:airline#extensions#tabline#show_close_button = 0
+
+   " enable whitespace
+   let g:airline#extension#whitespace#enabled = 1
 
    " """"""""""""""""""""""""""""""
    " " NERDTree setting
@@ -367,7 +366,8 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
    let g:NERDTreeShowHidden = 1
    let g:NERDTreeMinimalUI = 1
    let g:nerdtree_tabs_open_on_console_startup = 1
-   let g:nerdtree_tabs_autofind = 1
+   " let g:nerdtree_tabs_autofind = 1
+   let g:nerdtree_tabs_focus_on_files = 1
 
    """"""""""""""""""""""""""""""
    " Tagbar setting
