@@ -59,6 +59,11 @@ call pathogen#infect()
 "Sets how many lines of history VIM har to remember
 set history=4000
 
+" tell it to use an undo file
+set undofile
+" set a directory to store the undo history
+set undodir=~/.vim/undo
+
 "Set encoding
 set encoding=utf-8
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
@@ -91,9 +96,13 @@ nmap <silent> <leader><cr> :noh<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Set font
 if has("gui_gtk2")
-  set gfn=Courier\ New\ 10,Courier\ 10,Luxi\ Mono\ 10,
-        \DejaVu\ Sans\ Mono\ 10,Bitstream\ Vera\ Sans\ Mono\ 10,
-        \SimSun\ 10,WenQuanYi\ Micro\ Hei\ Mono\ 10
+  set gfn=DejaVu\ Sans\ Mono\ for\ Powerline\ 10,
+          \DejaVu\ Sans\ Mono\ 10,
+          \Courier\ New\ 10,
+          \Courier\ 10,
+          \Luxi\ Mono\ 10,
+          \SimSun\ 10,
+          \WenQuanYi\ Micro\ Hei\ Mono\ 10
 elseif has("x11")
   set gfn=*-*-medium-r-normal--10-*-*-*-*-m-*-*
 endif
@@ -109,19 +118,14 @@ if !exists("g:vimrc_loaded")
         set guioptions-=m
         set guioptions-=L
         set guioptions-=r
-        colorscheme darkblue_my
-        "hi normal guibg=#294d4a
+        " colorscheme darkblue_my
+        colorscheme desert_my
         set cursorline
     else
         colorscheme desert_my
     endif " has
 endif " exists(...)
 
-"Highlight current
-set cursorline
-set cursorcolumn
-hi CursorLine guibg=#333333
-hi CursorColumn guibg=#333333
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM userinterface
@@ -157,15 +161,12 @@ set hlsearch        "Highlight search things
 set magic           "Set magic on
 
 set showmatch       "show matching bracets
-if v:version >= 703
-  set colorcolumn=78  "show column highlight at col 78
-endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Moving around and tabs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Actually, the tab does not switch buffers, but my arrows
 "Bclose function can be found in "Buffer related" section
-map <leader>bd :Bclose<cr>
+map <leader>bd :silent! bp<bar>sp<bar>silent! bn<bar>bd<CR>
 
 "Smart way to move btw. windows
 nmap <C-j> <C-W>j
@@ -217,36 +218,16 @@ map <leader>es :tabnew<cr>:setl buftype=nofile<cr>
 map <leader>ec :tabnew ~/tmp/scratch.txt<cr>
 
 "Restore cursor to file position in previous editing session
-set viminfo='10,\"100,:20,n~/.viminfo
-au BufReadPost * if line("'\"") > 0 |
-                 \ if line("'\"") <= line("$") |
-                   \ exe "norm '\"" |
-                 \ else |
-                   \ exe "norm $" |
-                 \ endif |
-               \ endif
-
-  " Don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-
-function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
-
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
-
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
-
-   if buflisted(l:currentBufNum)
-     execute("bdelete ".l:currentBufNum)
-   endif
+" au BufWinLeave * mkview                    "eating up space
+" au BufWinEnter * silent loadview
+set viminfo='50,\"100,:20,n~/.viminfo
+au BufReadPost * call LocatePos()
+function! LocatePos()
+  if line("'\"") > 0 && line("'\"") <= line("$")
+    normal! g`"
+  endif
 endfunction
+au BufEnter * exe "norm zz"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Session options
