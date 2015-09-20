@@ -58,7 +58,7 @@ set directory-=.
 
 " tell VIM to use an undo file
 set undofile
-set undodir=$CACHE/vim_undo
+set undodir=$UNDO
 
 " Enable virtualedit in visual block mode.
 set virtualedit=block

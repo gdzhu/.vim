@@ -92,7 +92,7 @@ set display=lastline
 set display+=uhex
 
 " View setting.
-set viewdir=$CACHE/vim_view
+set viewdir=$VIEW
 set viewoptions-=options
 set viewoptions+=slash,unix
 

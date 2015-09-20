@@ -195,8 +195,6 @@
   " enable whitespace
   let g:airline#extension#whitespace#enabled = 1
 
-  au VimEnter * AirlineTheme murmur
-
 
 """"""""""""""""""""""""""""""
 " Tagbar
@@ -213,28 +211,6 @@
 
   " " switch to main edit buffer
   " autocmd VimEnter * nested sb "@%"
-
-
-""""""""""""""""""""""""""""""
-" lookupfile setting
-""""""""""""""""""""""""""""""
-  let g:LookupFile_MinPatLength = 2
-  let g:LookupFile_PreserveLastPattern = 0
-  let g:LookupFile_PreservePatternHistory = 0
-  let g:LookupFile_AlwaysAcceptFirst = 1
-  let g:LookupFile_AllowNewFiles = 0
-  let g:LookupFile_UsingSpecializedTags = 1
-  let g:LookupFile_Bufs_LikeBufCmd = 0
-  let g:LookupFile_ignorecase = 1
-  let g:LookupFile_smartcase = 1
-  if filereadable("./filenametags")
-    let g:LookupFile_TagExpr = '"./filenametags"'
-  endif
-  nmap <silent> <leader>lk :LUTags<cr>
-  nmap <silent> <leader>ll :LUBufs<cr>
-  nmap <silent> <leader>lw :LUWalk<cr>
-
-  let g:LookupFile_LookupFunc = 'LookupFile_IgnoreCaseFunc'
 
 
 """"""""""""""""""""""""""""""

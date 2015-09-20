@@ -122,17 +122,17 @@ nnoremap <silent> <leader>ws :call DeleteTrailingWS()<ESC><ESC><cr>:w<cr>
 "Remove the Windows ^M
 nnoremap <silent> <Leader>dm mzHmx:%s/<C-V><cr>//ge<cr>'xzt'z:delm x z<cr>
 
-" Quickfix
-" The prefix key.
-nnoremap [Quickfix]   <Nop>
-
-" Toggle quickfix window.
-nnoremap <silent> [Quickfix]<Space>
-      \ :<C-u>call toggle_quickfix_window()<CR>
-
-nnoremap <leader>cn :cn<cr>
-nnoremap <leader>cp :cp<cr>
-nnoremap <leader>cw :cw 10<cr>
+" " Quickfix
+" " The prefix key.
+" nnoremap [Quickfix]   <Nop>
+" 
+" " Toggle quickfix window.
+" nnoremap <silent> [Quickfix]<Space>
+"       \ :<C-u>call toggle_quickfix_window()<CR>
+" 
+" nnoremap <leader>cn :cn<cr>
+" nnoremap <leader>cp :cp<cr>
+" nnoremap <leader>cw :cw 10<cr>
 
 "Open a dummy buffer for paste
 nnoremap <leader>es :tabnew<cr>:setl buftype=nofile<cr>
