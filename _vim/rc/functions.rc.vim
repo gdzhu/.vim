@@ -40,7 +40,7 @@ function! g:smart_close()
   if winnr('$') != 1
     close
   else
-    call g:alternate_buffer()
+    call s:alternate_buffer()
   endif
 endfunction
 "}}}
@@ -95,7 +95,7 @@ endfunction
 function! CustomBufferDelete(is_force)
   let current = bufnr('%')
 
-  call g:alternate_buffer()
+  call s:alternate_buffer()
 
   if a:is_force
     silent! execute 'bdelete! ' . current
@@ -106,9 +106,9 @@ endfunction
 "}}}
 
 " alternate buffer "{{{
-function! g:alternate_buffer()
+function! s:alternate_buffer()
   let listed_buffer_len = len(filter(range(1, bufnr('$')),
-        \ 'g:buflisted(v:val) && getbufvar(v:val, "&filetype") !=# "unite"'))
+        \ 's:buflisted(v:val) && getbufvar(v:val, "&filetype") !=# "unite"'))
   if listed_buffer_len <= 1
     enew
     return
@@ -118,7 +118,7 @@ function! g:alternate_buffer()
   let pos = 1
   let current = 0
   while pos <= bufnr('$')
-    if g:buflisted(pos)
+    if s:buflisted(pos)
       if pos == bufnr('%')
         let current = cnt
       endif
@@ -138,14 +138,14 @@ endfunction
 "}}}
 
 " return buffer listed  "{{{
-function! g:buflisted(bufnr)
+function! s:buflisted(bufnr)
   return exists('t:unite_buffer_dictionary') ?
-        \ has_key(t:unite_buffer_dictionary, a:bufnr) && g:buflisted(a:bufnr) :
-        \ g:buflisted(a:bufnr)
+        \ has_key(t:unite_buffer_dictionary, a:bufnr) && s:buflisted(a:bufnr) :
+        \ s:buflisted(a:bufnr)
 endfunction"}}}
 "}}}
 "}}}
-
+" e: Change basic commands
 
 " Remove trailing white spaces  "{{{
 func! DeleteTrailingWS()

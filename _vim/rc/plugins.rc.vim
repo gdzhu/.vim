@@ -130,14 +130,16 @@
 """"""""""""""""""""""""""""""
 " unite
 """"""""""""""""""""""""""""""
-  nnoremap <silent> [Window]b :Unite buffer<CR>
+  nnoremap <silent> [Window]b :Unite buffer -buffer-name="opened-buffers"
+                                \ -no-split<CR>
 
 
 """"""""""""""""""""""""""""""
 " vimfiler
 """"""""""""""""""""""""""""""
-  noremap <silent>    [Window]s :<C-u>VimFilerExplorer<CR>
-  nnoremap <silent>   [Alt]f   :<C-u>VimFiler -invisible<CR>
+  noremap <silent>    [Window]s :<C-u>VimFiler -status -buffer-name="Explorer"
+                          \ -invisible<CR>
+  nnoremap <silent>   [Alt]f   :<C-u>VimFilerExplorer<CR>
   let g:vimfiler_enable_clipboard = 0
   "call vimfiler#custom#profile('default', 'context', {
   "      \ 'safe' : 0,
@@ -177,14 +179,14 @@
   let g:airline_symbols.space = "\ua0"
   let g:airline_powerline_fonts = 1
   " Airlinetheme
-  let g:airline_theme=murmur
+  let g:airline_theme = "murmur"
 
   " tabline enabled
   let g:airline#extensions#tabline#enabled = 1
   " not show buffers
-  let g:airline#extensions#tabline#show_buffers = 0
+  let g:airline#extensions#tabline#show_buffers = 1
   " display only tab number
-  let g:airline#extensions#tabline#tab_nr_type = 1
+  let g:airline#extensions#tabline#tab_nr_type = 0
   " not show tab type on the right of the screen
   let g:airline#extensions#tabline#show_tab_type = 0
   " not show close button on the right of the screen
@@ -194,6 +196,7 @@
   let g:airline#extension#whitespace#enabled = 1
 
   au VimEnter * AirlineTheme murmur
+
 
 """"""""""""""""""""""""""""""
 " Tagbar

@@ -63,13 +63,15 @@ nmap    s [Window]
 nnoremap <silent> [Window]p  :<C-u>call g:split_nicely()<CR>
 nnoremap <silent> [Window]c  :<C-u>call g:smart_close()<CR>
 nnoremap <silent> [Window]o  :<C-u>only<CR>
-nnoremap <silent> [Window]d  :<C-u>call CustomBufferDelete(1)<CR>
+nnoremap <silent> [Window]d  :<C-u>bp <BAR> bd #<CR>
+:autocmd BufDelete * if len(filter(range(1, bufnr('$')),
+                        \'! empty(bufname(v:val)) && buflisted(v:val)')) == 1 |
+                     \ quit |
+                   \ endif
 " Move around windows beyond tabs
 nnoremap <silent> <Tab> :call NextWindow()<CR>
 nnoremap <silent> <S-Tab> :call PreviousWindowOrTab()<CR>
 
-
-" e: Change basic commands
 " The prefix key.
 nnoremap [Alt]   <Nop>
 xnoremap [Alt]   <Nop>
@@ -93,10 +95,10 @@ nnoremap Y y$
 nnoremap Q  q
 
 " Smart <C-f>, <C-b>.
-noremap <expr> <C-f> max([winheight(0) - 2, 1])
-      \ . "\<C-d>" . (line('w$') >= line('$') ? "L" : "H")
-noremap <expr> <C-b> max([winheight(0) - 2, 1])
-      \ . "\<C-u>" . (line('w0') <= 1 ? "H" : "L")
+"noremap <expr> <C-f> max([winheight(0) - 2, 1])
+"      \ . "\<C-d>" . (line('w$') >= line('$') ? "L" : "H")
+"noremap <expr> <C-b> max([winheight(0) - 2, 1])
+"      \ . "\<C-u>" . (line('w0') <= 1 ? "H" : "L")
 
 " Disable ZZ.
 nnoremap ZZ  <Nop>

@@ -3,8 +3,19 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set Cache
 let $CACHE = expand('~/.vim/.cache')
+let $UNDO = expand('$CACHE/vim_undo')
+let $VIEW = expand('$CACHE/vim_view')
+
 if !isdirectory(expand($CACHE))
-  call mkdir(expand($CACHE), 'p')
+  call mkdir(expand('$CACHE', 'p'))
+endif
+
+if !isdirectory(expand($VIEW))
+  call mkdir(expand('$VIEW', 'p'))
+endif
+
+if !isdirectory(expand($UNDO))
+  call mkdir(expand('$UNDO', 'p'))
 endif
 
 if has('vim_starting') "{{{
