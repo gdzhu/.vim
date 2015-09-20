@@ -78,3 +78,14 @@ hi MatchParen ctermfg=7 ctermbg=4
 " For showmarks plugin
 hi ShowMarksHLl ctermbg=Yellow   ctermfg=Black  guibg=#FFDB72    guifg=Black
 hi ShowMarksHLu ctermbg=Magenta  ctermfg=Black  guibg=#FFB3FF    guifg=Black
+
+"Highlight current
+set cursorline
+hi CursorLine guibg=#303030 ctermbg=236
+set cursorcolumn
+hi CursorColumn guibg=#303030 ctermbg=236
+
+if v:version >= 703
+  hi ColorColumn term=reverse ctermbg=236 guibg=#303030
+  set cc=+1,120  "show column highlight at col 78
+endif

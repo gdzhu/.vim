@@ -124,3 +124,14 @@ hi PmenuSel ctermfg=7 ctermbg=4 guibg=#555555 guifg=#ffffff
 hi MatchParen ctermfg=7 ctermbg=4
 
 "vim: sw=4
+
+"Highlight current
+set cursorline
+hi CursorLine guibg=#303030 ctermbg=236
+set cursorcolumn
+hi CursorColumn guibg=#303030 ctermbg=236
+
+if v:version >= 703
+  hi ColorColumn term=reverse ctermbg=236 guibg=#303030
+  set cc=+1,120  "show column highlight at col 78
+endif
