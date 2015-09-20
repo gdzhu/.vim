@@ -64,10 +64,6 @@ nnoremap <silent> [Window]p  :<C-u>call g:split_nicely()<CR>
 nnoremap <silent> [Window]c  :<C-u>call g:smart_close()<CR>
 nnoremap <silent> [Window]o  :<C-u>only<CR>
 nnoremap <silent> [Window]d  :<C-u>bp <BAR> bd #<CR>
-:autocmd BufDelete * if len(filter(range(1, bufnr('$')),
-                        \'! empty(bufname(v:val)) && buflisted(v:val)')) == 1 |
-                     \ quit |
-                   \ endif
 " Move around windows beyond tabs
 nnoremap <silent> <Tab> :call NextWindow()<CR>
 nnoremap <silent> <S-Tab> :call PreviousWindowOrTab()<CR>
