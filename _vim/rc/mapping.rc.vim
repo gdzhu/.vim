@@ -133,3 +133,7 @@ nnoremap <silent> <Leader>dm mzHmx:%s/<C-V><cr>//ge<cr>'xzt'z:delm x z<cr>
 "Open a dummy buffer for paste
 nnoremap <leader>es :tabnew<cr>:setl buftype=nofile<cr>
 nnoremap <leader>ec :tabnew ~/tmp/scratch.txt<cr>
+
+" Fast grep
+nmap <silent> <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
+vmap <silent> <leader>lv :lv /<c-r>=GetVisualSelection()<cr>/ %<cr>:lw<cr>

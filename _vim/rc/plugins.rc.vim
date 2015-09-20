@@ -74,7 +74,7 @@
   inoremap <expr> <C-n>  pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>\<Down>"
   " <C-p>: keyword completion.
   inoremap <expr> <C-p>  pumvisible() ? "\<C-p>" : "\<C-p>\<C-n>"
-  inoremap <expr> '  pumvisible() ? neocomplete#close_popup() : "'"
+  " inoremap <expr> '  pumvisible() ? neocomplete#close_popup() : "'"
 
   inoremap <silent><expr> <C-x><C-f>
         \ neocomplete#start_manual_complete('file')
@@ -131,22 +131,17 @@
 " unite
 """"""""""""""""""""""""""""""
   nnoremap <silent> [Window]b :Unite buffer -buffer-name="opened-buffers"
-                                \ -no-split<CR>
+                                \ -no-split -immediately<CR>
 
 
 """"""""""""""""""""""""""""""
 " vimfiler
 """"""""""""""""""""""""""""""
-  noremap <silent>    [Window]s :<C-u>VimFiler -status -buffer-name="Explorer"
-                          \ -invisible<CR>
+  noremap <silent>    [Window]s :<C-u>VimFilerBufferDir -buffer-name="Explorer"
+                          \ -invisible -force-quit<CR>
   nnoremap <silent>   [Alt]f   :<C-u>VimFilerExplorer<CR>
+  nmap <silent> q      <Plug>(vimfiler_exit)
   let g:vimfiler_enable_clipboard = 0
-  "call vimfiler#custom#profile('default', 'context', {
-  "      \ 'safe' : 0,
-  "      \ 'auto_expand' : 1,
-  "      \ 'parent' : 0,
-  "      \ })
-
   let g:vimfiler_as_default_explorer = 1
   let g:vimfiler_tree_leaf_icon = ' '
   let g:vimfiler_tree_opened_icon = '▾'
@@ -159,15 +154,15 @@
 """"""""""""""""""""""""""""""
 " matchit
 """"""""""""""""""""""""""""""
-  function! neobundle#hooks.on_post_source(bundle)
-    silent! execute 'doautocmd Filetype' &filetype
-  endfunction
+"  function! neobundle#hooks.on_post_source(bundle)
+"    silent! execute 'doautocmd Filetype' &filetype
+"  endfunction
 
 
 """"""""""""""""""""""""""""""
 " vim-fullscreen
 """"""""""""""""""""""""""""""
-  nmap <C-CR> <Plug>(fullscreen-toggle)
+  nmap [Alt]<CR> <Plug>(fullscreen-toggle)
 
 
 """"""""""""""""""""""""""""""
@@ -191,6 +186,11 @@
   let g:airline#extensions#tabline#show_tab_type = 0
   " not show close button on the right of the screen
   let g:airline#extensions#tabline#show_close_button = 0
+  let g:airline#extensions#tabline#buffer_nr_show = 1
+  let g:airline#extensions#tabline#excludes = ['vimfiler:"Explorer"',
+                          \ '[unite] - "opened-buffers"',
+                          \ 'Explorer',
+                          \ 'opened-buffers']
 
   " enable whitespace
   let g:airline#extension#whitespace#enabled = 1
@@ -239,3 +239,28 @@
   "Basically you press * or # to search for the current selection
   vnoremap <silent> * :call VisualSearch('f')<CR>
   vnoremap <silent> # :call VisualSearch('b')<CR>
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " cscope setting
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" if has("cscope")
+"   set csprg=/usr/bin/cscope
+"   set csto=1
+"   set cst
+"   set nocsverb
+"   " add any database in current directory
+"   if filereadable("cscope.out")
+"       cs add cscope.out
+"   endif
+"   set csverb
+" endif
+"
+" nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+" nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+" nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+" nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+" nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+" nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+" nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+" nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+

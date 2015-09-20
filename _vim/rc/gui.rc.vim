@@ -26,7 +26,7 @@ endif
 """""""""""""""""
 " Mouse
 """""""""""""""""
-set mouse=
+set mouse=a
 set mousemodel=
 
 " Don't focus the window when the mouse pointer is moved.
