@@ -71,7 +71,7 @@
   inoremap <expr> <C-h> neocomplete#smart_close_popup()."\<C-h>"
   inoremap <expr> <BS> neocomplete#smart_close_popup()."\<C-h>"
   " <C-n>: neocomplete.
-  inoremap <expr> <C-n>  pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>\<Down>"
+  " inoremap <expr> <C-n>  pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>\<Down>"
   " inoremap <expr> <C-n>  pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>\<Down>"
   " <C-p>: keyword completion.
   inoremap <expr> <C-p>  pumvisible() ? "\<C-p>" : "\<C-p>\<C-n>"
@@ -174,7 +174,7 @@
   let g:airline_symbols.space = "\ua0"
   let g:airline_powerline_fonts = 1
   " Airlinetheme
-  let g:airline_theme = "murmur"
+  let g:airline_theme = "solarized"
 
   " tabline enabled
   let g:airline#extensions#tabline#enabled = 1

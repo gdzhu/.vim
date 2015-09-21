@@ -100,10 +100,10 @@ nnoremap Q  q
 nnoremap ZZ  <Nop>
 
 " Paste next line.
-nnoremap <silent> gp o<ESC>p^
-nnoremap <silent> gP O<ESC>P^
-xnoremap <silent> gp o<ESC>p^
-xnoremap <silent> gP O<ESC>P^
+nnoremap <silent> [Alt]p o<ESC>p^
+nnoremap <silent> [Alt]P O<ESC>P^
+xnoremap <silent> [Alt]p o<ESC>p^
+xnoremap <silent> [Alt]P O<ESC>P^
 
 " If press h on head, fold close.
 "nnoremap <expr> h col('.') == 1 && foldlevel(line('.')) > 0 ? 'zc' : 'h'

@@ -236,7 +236,9 @@ function! VisualSearch(direction) range
 endfunction
 "}}}
 
-function AlignAssignments ()
+
+" AlignAssignments "{{{
+function! AlignAssignments ()
     "Patterns needed to locate assignment operators...
     let ASSIGN_OP   = '[-+*/%|&]\?=\@<!=[=~]\@!'
     let ASSIGN_LINE = '^\(.\{-}\)\s*\(' . ASSIGN_OP . '\)'
@@ -276,3 +278,4 @@ function AlignAssignments ()
         call setline(linenum, newline)
     endfor
 endfunction
+"}}}
