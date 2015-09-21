@@ -1,12 +1,20 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GUI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+syntax enable
 set t_Co=256
 
 """""""""""""""""
 " ColorScheme
 """""""""""""""""
-colorscheme desert_my
+set background=dark
+"set background=light
+"let g:solarized_termcolors=256
+"let g:solarized_termcolors=16
+"let g:solarized_termtrans=1
+colorscheme solarized
+
 
 """""""""""""""""
 " Font

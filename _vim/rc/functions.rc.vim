@@ -19,7 +19,7 @@ endfunction
 
 
 " Change current directory. "{{{
-function! g:cd_buffer_dir()
+function! CD_buffer_dir()
   let filetype = getbufvar(bufnr('%'), '&filetype')
   if filetype ==# 'vimfiler'
     let dir = getbufvar(bufnr('%'), 'vimfiler').current_dir
@@ -36,7 +36,7 @@ endfunction
 
 " Buffer related "{{{
 " close buffers smartly "{{{
-function! g:smart_close()
+function! Smart_close()
   if winnr('$') != 1
     close
   else
@@ -80,7 +80,7 @@ endfunction
 "}}}
 
 " split nicely "{{{
-function! g:split_nicely()
+function! Split_nicely()
   " Split nicely.
   if winwidth(0) > 2 * &winwidth
     vsplit
@@ -142,10 +142,9 @@ function! s:buflisted(bufnr)
   return exists('t:unite_buffer_dictionary') ?
         \ has_key(t:unite_buffer_dictionary, a:bufnr) && s:buflisted(a:bufnr) :
         \ s:buflisted(a:bufnr)
-endfunction"}}}
+endfunction
 "}}}
 "}}}
-" e: Change basic commands
 
 " Remove trailing white spaces  "{{{
 func! DeleteTrailingWS()
@@ -157,7 +156,7 @@ endfunc
 
 
 " Quickfix  "{{{
-function! g:toggle_quickfix_window()
+function! Toggle_quickfix_window()
   let _ = winnr('$')
   cclose
   if _ == winnr('$')
@@ -236,3 +235,44 @@ function! VisualSearch(direction) range
   let @" = l:saved_reg
 endfunction
 "}}}
+
+function AlignAssignments ()
+    "Patterns needed to locate assignment operators...
+    let ASSIGN_OP   = '[-+*/%|&]\?=\@<!=[=~]\@!'
+    let ASSIGN_LINE = '^\(.\{-}\)\s*\(' . ASSIGN_OP . '\)'
+
+    "Locate block of code to be considered (same indentation, no blanks)
+    let indent_pat = '^' . matchstr(getline('.'), '^\s*') . '\S'
+    let firstline  = search('^\%('. indent_pat . '\)\@!','bnW') + 1
+    let lastline   = search('^\%('. indent_pat . '\)\@!', 'nW') - 1
+    if lastline < 0
+        let lastline = line('$')
+    endif
+
+    "Find the column at which the operators should be aligned...
+    let max_align_col = 0
+    let max_op_width  = 0
+    for linetext in getline(firstline, lastline)
+        "Does this line have an assignment in it?
+        let left_width = match(linetext, '\s*' . ASSIGN_OP)
+
+        "If so, track the maximal assignment column and operator width...
+        if left_width >= 0
+            let max_align_col = max([max_align_col, left_width])
+
+            let op_width      = strlen(matchstr(linetext, ASSIGN_OP))
+            let max_op_width  = max([max_op_width, op_width+1])
+         endif
+    endfor
+
+    "Code needed to reformat lines so as to align operators...
+    let FORMATTER = '\=printf("%-*s%*s", max_align_col, submatch(1),
+    \                                    max_op_width,  submatch(2))'
+
+    " Reformat lines with operators aligned in the appropriate column...
+    for linenum in range(firstline, lastline)
+        let oldline = getline(linenum)
+        let newline = substitute(oldline, ASSIGN_LINE, FORMATTER, "")
+        call setline(linenum, newline)
+    endfor
+endfunction

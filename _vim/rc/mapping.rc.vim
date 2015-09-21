@@ -43,7 +43,7 @@ cnoremap <C-y>          <C-r>*
 " Visual Mode
 """""""""""""""""
 " Toggle relativenumber.
-nnoremap <silent> <leader>cd :<C-u>call g:cd_buffer_dir()<CR>
+nnoremap <silent> <leader>cd :<C-u>call CD_buffer_dir()<CR>
 
 " Change current directory.
 nnoremap <silent> <leader>nu :<C-u>call ToggleOption('relativenumber')<CR>
@@ -60,8 +60,8 @@ nnoremap    [Window]   <Nop>
 nmap    s [Window]
 
 " Windows
-nnoremap <silent> [Window]p  :<C-u>call g:split_nicely()<CR>
-nnoremap <silent> [Window]c  :<C-u>call g:smart_close()<CR>
+nnoremap <silent> [Window]p  :<C-u>call Split_nicely()<CR>
+nnoremap <silent> [Window]c  :<C-u>call Smart_close()<CR>
 nnoremap <silent> [Window]o  :<C-u>only<CR>
 nnoremap <silent> [Window]d  :<C-u>bp <BAR> bd #<CR>
 " Move around windows beyond tabs
@@ -124,7 +124,7 @@ nnoremap <silent> <Leader>dm mzHmx:%s/<C-V><cr>//ge<cr>'xzt'z:delm x z<cr>
 " 
 " " Toggle quickfix window.
 " nnoremap <silent> [Quickfix]<Space>
-"       \ :<C-u>call toggle_quickfix_window()<CR>
+"       \ :<C-u>call Toggle_quickfix_window()<CR>
 " 
 " nnoremap <leader>cn :cn<cr>
 " nnoremap <leader>cp :cp<cr>
@@ -137,3 +137,4 @@ nnoremap <leader>ec :tabnew ~/tmp/scratch.txt<cr>
 " Fast grep
 nmap <silent> <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
 vmap <silent> <leader>lv :lv /<c-r>=GetVisualSelection()<cr>/ %<cr>:lw<cr>
+nmap <silent>  <leader>;  :call AlignAssignments()<CR>

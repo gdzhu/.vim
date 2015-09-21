@@ -72,6 +72,7 @@
   inoremap <expr> <BS> neocomplete#smart_close_popup()."\<C-h>"
   " <C-n>: neocomplete.
   inoremap <expr> <C-n>  pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>\<Down>"
+  " inoremap <expr> <C-n>  pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>\<Down>"
   " <C-p>: keyword completion.
   inoremap <expr> <C-p>  pumvisible() ? "\<C-p>" : "\<C-p>\<C-n>"
   " inoremap <expr> '  pumvisible() ? neocomplete#close_popup() : "'"
@@ -81,7 +82,7 @@
 
   inoremap <expr> <C-g>     neocomplete#undo_completion()
   inoremap <expr> <C-l>     neocomplete#complete_common_string()
-
+"}}}
   " <CR>: close popup and save indent.
   inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
   function! s:my_cr_function()
@@ -89,8 +90,7 @@
   endfunction
 
   " <TAB>: completion.
-  inoremap <silent><expr> <TAB>
-        \ pumvisible() ? "\<C-n>" :
+  inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" :
         \ <SID>check_back_space() ? "\<TAB>" :
         \ neocomplete#start_manual_complete()
   function! s:check_back_space() "{{{
@@ -118,7 +118,8 @@
   " imap <expr><silent>L     neocomplete#mappings#close_popup() .
   "       \ "\<Plug>(neosnippet_jump_or_expand)"
 
-  " let g:neosnippet#snippets_directory = '~/.vim/snippets'
+  let g:neosnippet#snippets_directory = '~/.vim/snippets'
+  let g:neosnippet#data_directory='~/.vim/snippets/'
 
 
 """"""""""""""""""""""""""""""
@@ -140,7 +141,6 @@
   noremap <silent>    [Window]s :<C-u>VimFilerBufferDir -buffer-name="Explorer"
                           \ -invisible -force-quit<CR>
   nnoremap <silent>   [Alt]f   :<C-u>VimFilerExplorer<CR>
-  nmap <silent> q      <Plug>(vimfiler_exit)
   let g:vimfiler_enable_clipboard = 0
   let g:vimfiler_as_default_explorer = 1
   let g:vimfiler_tree_leaf_icon = ' '

@@ -38,6 +38,7 @@ call neobundle#begin(expand('$CACHE/neobundle'))
 
 "if neobundle#load_cache()
   NeoBundleFetch 'shougo/neobundle.vim'
+  NeoBundle 'altercation/vim-colors-solarized'
   NeoBundle 'bling/vim-airline'
   NeoBundle 'vim-scripts/Marks-Browser'
   NeoBundle 'vim-scripts/matchit.zip'
@@ -69,7 +70,6 @@ call neobundle#begin(expand('$CACHE/neobundle'))
 call neobundle#end()
 
 filetype plugin indent on
-syntax enable
 
 NeoBundleCheck
 
