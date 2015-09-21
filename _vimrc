@@ -3,37 +3,37 @@ if &compatible
     set nocompatible
 endif
 
-function! Source_rc_file(path)
+function! s:sourcerc(path)
   execute 'source' fnameescape(expand('~/.vim/rc/' . a:path))
 endfunction
 
 " Neobundle and plugins init
-call Source_rc_file('init.rc.vim')
+call s:sourcerc('init.rc.vim')
 
 " Set mapleader
 let mapleader = ","
 let g:mapleader = ","
 
 " Setup GUI
-call Source_rc_file('gui.rc.vim')
+call s:sourcerc('gui.rc.vim')
 
 " Setup View
-call Source_rc_file('view.rc.vim')
+call s:sourcerc('view.rc.vim')
 
 " Setup Editing envrionment
-call Source_rc_file('edit.rc.vim')
+call s:sourcerc('edit.rc.vim')
 
 " Setup key mappings
-call Source_rc_file('mapping.rc.vim')
+call s:sourcerc('mapping.rc.vim')
 
 " Setup plugins
-call Source_rc_file('plugins.rc.vim')
+call s:sourcerc('plugins.rc.vim')
 
 " Setup filetype related
-call Source_rc_file('filetype.rc.vim')
+call s:sourcerc('filetype.rc.vim')
 
 " Load functions
-call Source_rc_file('functions.rc.vim')
+call s:sourcerc('functions.rc.vim')
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
