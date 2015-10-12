@@ -42,10 +42,22 @@ cnoremap <C-y>          <C-r>*
 """""""""""""""""
 " Visual Mode
 """""""""""""""""
-" Toggle relativenumber.
-nnoremap <silent> <leader>cd :<C-u>call CD_buffer_dir()<CR>
+" Move through breaked lines
+vmap <D-j> gj
+vmap <D-k> gk
+vmap <D-4> g$
+vmap <D-6> g^
+vmap <D-0> g^
+nmap <D-j> gj
+nmap <D-k> gk
+nmap <D-4> g$
+nmap <D-6> g^
+nmap <D-0> g^
 
 " Change current directory.
+nnoremap <silent> <leader>cd :<C-u>call ChangeBufferDir()<CR>
+
+" Toggle relativenumber.
 nnoremap <silent> <leader>nu :<C-u>call ToggleOption('relativenumber')<CR>
 nnoremap <silent> <leader>sc :<C-u>call ToggleOption('spell')<CR>
 
@@ -60,13 +72,17 @@ nnoremap    [Window]   <Nop>
 nmap    s [Window]
 
 " Windows
-nnoremap <silent> [Window]p  :<C-u>call Split_nicely()<CR>
-nnoremap <silent> [Window]c  :<C-u>call Smart_close()<CR>
+nnoremap <silent> [Window]p  <C-w>s
+nnoremap <silent> [Window]v  <C-w>v
+nnoremap <silent> [Window]c  :<C-u>call SmartClose()<CR>
 nnoremap <silent> [Window]o  :<C-u>only<CR>
 nnoremap <silent> [Window]d  :<C-u>bp <BAR> bd #<CR>
 " Move around windows beyond tabs
-nnoremap <silent> <Tab> :call NextWindow()<CR>
-nnoremap <silent> <S-Tab> :call PreviousWindowOrTab()<CR>
+nnoremap <silent> <Tab> <C-w>w
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
 " The prefix key.
 nnoremap [Alt]   <Nop>
@@ -121,11 +137,11 @@ nnoremap <silent> <Leader>dm mzHmx:%s/<C-V><cr>//ge<cr>'xzt'z:delm x z<cr>
 " " Quickfix
 " " The prefix key.
 " nnoremap [Quickfix]   <Nop>
-" 
+"
 " " Toggle quickfix window.
 " nnoremap <silent> [Quickfix]<Space>
-"       \ :<C-u>call Toggle_quickfix_window()<CR>
-" 
+"       \ :<C-u>call ToggleQuickfixWindow()<CR>
+"
 " nnoremap <leader>cn :cn<cr>
 " nnoremap <leader>cp :cp<cr>
 " nnoremap <leader>cw :cw 10<cr>
@@ -137,4 +153,24 @@ nnoremap <leader>ec :tabnew ~/tmp/scratch.txt<cr>
 " Fast grep
 nmap <silent> <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
 vmap <silent> <leader>lv :lv /<c-r>=GetVisualSelection()<cr>/ %<cr>:lw<cr>
-nmap <silent>  <leader>;  :call AlignAssignments()<CR>
+nmap <silent> <leader>;  :call AlignAssignments()<CR>
+
+" force save to read only file/privileged file
+cmap :w!! w !sudo tee % > /dev/null
+
+" Switch between Hex and normal mode
+noremap <F8> :call HexMe()<CR>
+
+" Set tabstop, softtabstop and shiftwidth to the same value
+command! -nargs=* Stab call Stab()
+nnoremap [Alt]<S-Tab> :call Stab()<CR>
+
+" Bubble single lines
+nnoremap <Up> [e
+nnoremap <Down> ]e
+" Bubble multiple lines
+vnoremap <Up> [egv
+vnoremap <Down> ]egv
+
+" Visually select the text that was last edited/pasted
+nnoremap gV `[v`]

@@ -19,7 +19,7 @@ endfunction
 
 
 " Change current directory. "{{{
-function! CD_buffer_dir()
+function! ChangeBufferDir()
   let filetype = getbufvar(bufnr('%'), '&filetype')
   if filetype ==# 'vimfiler'
     let dir = getbufvar(bufnr('%'), 'vimfiler').current_dir
@@ -36,114 +36,34 @@ endfunction
 
 " Buffer related "{{{
 " close buffers smartly "{{{
-function! Smart_close()
+function! SmartClose()
   if winnr('$') != 1
     close
   else
-    call s:alternate_buffer()
+    call s:BufferDelete()
   endif
 endfunction
 "}}}
 
-" move to the next window "{{{
-function! NextWindow()
-  if winnr('$') == 1
-    silent! normal! ``z.
-  else
-    wincmd w
-  endif
-endfunction
-"}}}
+function! s:BufferDelete()
+    if &modified
+        echohl ErrorMsg
+        echomsg "No write since last change. Not closing buffer."
+        echohl NONE
+    else
+        let s:total_nr_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
 
-" next window or tab "{{{
-function! NextWindowOrTab()
-  if tabpagenr('$') == 1 && winnr('$') == 1
-    call g:split_nicely()
-  elseif winnr() < winnr("$")
-    wincmd w
-  else
-    tabnext
-    1wincmd w
-  endif
-endfunction
-"}}}
-
-" previous window or tab "{{{
-function! PreviousWindowOrTab()
-  if winnr() > 1
-    wincmd W
-  else
-    tabprevious
-    execute winnr("$") . "wincmd w"
-  endif
-endfunction
-"}}}
-
-" split nicely "{{{
-function! Split_nicely()
-  " Split nicely.
-  if winwidth(0) > 2 * &winwidth
-    vsplit
-  else
-    split
-  endif
-  wincmd p
-endfunction
-"}}}
-
-" Delete current buffer. "{{{
-function! CustomBufferDelete(is_force)
-  let current = bufnr('%')
-
-  call s:alternate_buffer()
-
-  if a:is_force
-    silent! execute 'bdelete! ' . current
-  else
-    silent! execute 'bdelete ' . current
-  endif
-endfunction
-"}}}
-
-" alternate buffer "{{{
-function! s:alternate_buffer()
-  let listed_buffer_len = len(filter(range(1, bufnr('$')),
-        \ 's:buflisted(v:val) && getbufvar(v:val, "&filetype") !=# "unite"'))
-  if listed_buffer_len <= 1
-    enew
-    return
-  endif
-
-  let cnt = 0
-  let pos = 1
-  let current = 0
-  while pos <= bufnr('$')
-    if s:buflisted(pos)
-      if pos == bufnr('%')
-        let current = cnt
-      endif
-
-      let cnt += 1
+        if s:total_nr_buffers == 1
+            bdelete
+            echo "Buffer deleted. Created new buffer."
+        else
+            bprevious
+            bdelete #
+            echo "Buffer deleted."
+        endif
     endif
-
-    let pos += 1
-  endwhile
-
-  if current > cnt / 2
-    bprevious
-  else
-    bnext
-  endif
 endfunction
-"}}}
 
-" return buffer listed  "{{{
-function! s:buflisted(bufnr)
-  return exists('t:unite_buffer_dictionary') ?
-        \ has_key(t:unite_buffer_dictionary, a:bufnr) && s:buflisted(a:bufnr) :
-        \ s:buflisted(a:bufnr)
-endfunction
-"}}}
 "}}}
 
 " Remove trailing white spaces  "{{{
@@ -156,7 +76,7 @@ endfunc
 
 
 " Quickfix  "{{{
-function! Toggle_quickfix_window()
+function! ToggleQuickfixWindow()
   let _ = winnr('$')
   cclose
   if _ == winnr('$')
@@ -164,27 +84,6 @@ function! Toggle_quickfix_window()
     setlocal nowrap
     setlocal whichwrap=b,s
   endif
-endfunction
-" }}}
-
-
-" lookup file with ignore case "{{{
-function! LookupFile_IgnoreCaseFunc(pattern)
-  let _tags = &tags
-  try
-    let &tags = eval(g:LookupFile_TagExpr)
-    let newpattern = '\c' . a:pattern
-    let tags = taglist(newpattern)
-  catch
-    echohl ErrorMsg | echo "Exception: " . v:exception | echohl NONE
-    return ""
-  finally
-    let &tags = _tags
-  endtry
-
-  " Show the matches for what is typed so far.
-  let files = map(tags, 'v:val["filename"]')
-  return files
 endfunction
 " }}}
 
@@ -277,5 +176,48 @@ function! AlignAssignments ()
         let newline = substitute(oldline, ASSIGN_LINE, FORMATTER, "")
         call setline(linenum, newline)
     endfor
+endfunction
+"}}}
+
+" Switch between hex and normal mode {{{
+let $in_hex=0
+function! HexMe()
+        set binary
+        set noeol
+        if $in_hex>0
+                :%!xxd -r
+                let $in_hex=0
+        else
+                :%!xxd
+                let $in_hex=1
+        endif
+endfunction
+" }}}
+
+" Set tabstop, softtabstop and shiftwidth to the same value {{{
+function! Stab()
+  let l:tabstop = 1 * input('set tabstop = softtabstop = shiftwidth = ')
+  if l:tabstop > 0
+    let &l:sts = l:tabstop
+    let &l:ts = l:tabstop
+    let &l:sw = l:tabstop
+  endif
+  call SummarizeTabs()
+endfunction
+
+function! SummarizeTabs()
+  try
+    echohl ModeMsg
+    echon 'tabstop='.&l:ts
+    echon ' shiftwidth='.&l:sw
+    echon ' softtabstop='.&l:sts
+    if &l:et
+      echon ' expandtab'
+    else
+      echon ' noexpandtab'
+    endif
+  finally
+    echohl None
+  endtry
 endfunction
 "}}}

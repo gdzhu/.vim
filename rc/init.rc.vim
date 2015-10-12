@@ -39,6 +39,7 @@ call neobundle#begin(expand('$CACHE/neobundle'))
 "if neobundle#load_cache()
   NeoBundleFetch 'shougo/neobundle.vim'
   NeoBundle 'altercation/vim-colors-solarized'
+  NeoBundle 'tpope/vim-unimpaired'
   NeoBundle 'bling/vim-airline'
   NeoBundle 'vim-scripts/Marks-Browser'
   NeoBundle 'vim-scripts/matchit.zip'
