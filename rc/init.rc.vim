@@ -44,6 +44,7 @@ call neobundle#begin(expand('$CACHE/neobundle'))
   NeoBundle 'godlygeek/tabular'
   NeoBundle 'scrooloose/syntastic'
   NeoBundle 'sjl/gundo.vim'
+  NeoBundle 'tommcdo/vim-exchange'
   NeoBundle 'vim-scripts/matchit.zip'
   NeoBundle 'vim-scripts/ShowMarks7'
   NeoBundle 'vim-scripts/surround.vim'

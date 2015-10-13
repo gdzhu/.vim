@@ -61,11 +61,6 @@ nnoremap <silent> <leader>cd :<C-u>call ChangeBufferDir()<CR>
 nnoremap <silent> <leader>nu :<C-u>call ToggleOption('relativenumber')<CR>
 nnoremap <silent> <leader>sc :<C-u>call ToggleOption('spell')<CR>
 
-" Easily syntax change.
-nnoremap <silent> <leader>ft
-      \ :<C-u>Unite -start-insert filetype filetype/new<CR>
-
-
 " s: Windows and buffers(High priority)
 " The prefix key.
 nnoremap    [Window]   <Nop>
@@ -74,7 +69,7 @@ nmap    s [Window]
 " Windows
 nnoremap <silent> [Window]p  <C-w>s
 nnoremap <silent> [Window]v  <C-w>v
-nnoremap <silent> [Window]c  :<C-u>call SmartClose()<CR>
+nnoremap <silent> [Window]c  :<C-u>call pSmartClose()<CR>
 nnoremap <silent> [Window]o  :<C-u>only<CR>
 " Move around windows beyond tabs
 nnoremap <silent> <Tab> <C-w>w
@@ -84,7 +79,7 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " remap Ex-mode.
-nnoremap Q  q
+nnoremap Q  :normal @q<cr>
 
 " Disable ZZ.
 nnoremap ZZ  <Nop>
@@ -103,8 +98,8 @@ nnoremap <silent> <leader>ws :call DeleteTrailingWS()<ESC><ESC><cr>:w<cr>
 nnoremap <silent> <Leader>dm mzHmx:%s/<C-V><cr>//ge<cr>'xzt'z:delm x z<cr>
 
 "Open a dummy buffer for paste
-nnoremap <leader>es :new<cr>:setl buftype=nofile<cr>
-nnoremap <leader>ec :new ~/tmp/scratch.txt<cr>
+nnoremap <leader>es :enew<cr>:setl buftype=nofile<cr>
+nnoremap <leader>ec :enew ~/tmp/scratch.txt<cr>
 
 " Fast grep
 nmap <silent> <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr><leader>ll

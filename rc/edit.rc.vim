@@ -70,5 +70,3 @@ if executable("par")
     set formatprg=par\ -w78rq
 endif
 
-"Paste toggle - when pasting something in, don't indent.
-set pastetoggle=<F3>

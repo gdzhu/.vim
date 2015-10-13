@@ -141,7 +141,7 @@
   " noremap <silent>    [Window]s :<C-u>VimFilerBufferDir -buffer-name="Explorer"
   "                         \ -invisible -force-quit<CR>
   nnoremap <silent>   [Window]s   :<C-u>VimFilerExplorer -horizontal -auto-cd
-                          \ -status -parent -find<CR>
+                          \ -status -parent -find -force-quit<CR>
   let g:vimfiler_safe_mode_by_default = 0
   let g:vimfiler_enable_clipboard = 0
   let g:vimfiler_as_default_explorer = 1
@@ -280,4 +280,13 @@ let g:gundo_preview_bottom = 1
 """"""""""""""""""""""""""""""
 " Tabularize
 """"""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""
+" exchange.vim
+""""""""""""""""""""""""""""""
+let g:exchange_no_mappings=1
+nmap cx <Plug>(Exchange)
+vmap X <Plug>(Exchange)
+nmap cxc <Plug>(ExchangeClear)
+nmap cxx <Plug>(ExchangeLine)
 
