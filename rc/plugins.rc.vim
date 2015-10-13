@@ -1,4 +1,3 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Configuration
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""
@@ -125,22 +124,25 @@
 """"""""""""""""""""""""""""""
 " vinarise
 """"""""""""""""""""""""""""""
-  let g:vinarise_enable_auto_detect = 1
+  " Barely useable
+  " let g:vinarise_enable_auto_detect = 1
+  " nnoremap <F8> :Vinarise -split-command="vsplit" <CR>
 
 
 """"""""""""""""""""""""""""""
 " unite
 """"""""""""""""""""""""""""""
-  nnoremap <silent> [Window]b :Unite buffer -buffer-name="opened-buffers"
-                                \ -no-split -immediately<CR>
+  nnoremap <silent> [Window]b :Unite -start-insert buffer -buffer-name="opened-buffers" -immediately<CR>
 
 
 """"""""""""""""""""""""""""""
 " vimfiler
 """"""""""""""""""""""""""""""
-  noremap <silent>    [Window]s :<C-u>VimFilerBufferDir -buffer-name="Explorer"
-                          \ -invisible -force-quit<CR>
-  nnoremap <silent>   [Alt]f   :<C-u>VimFilerExplorer<CR>
+  " noremap <silent>    [Window]s :<C-u>VimFilerBufferDir -buffer-name="Explorer"
+  "                         \ -invisible -force-quit<CR>
+  nnoremap <silent>   [Window]s   :<C-u>VimFilerExplorer -horizontal -auto-cd
+                          \ -status -parent -find<CR>
+  let g:vimfiler_safe_mode_by_default = 0
   let g:vimfiler_enable_clipboard = 0
   let g:vimfiler_as_default_explorer = 1
   let g:vimfiler_tree_leaf_icon = ' '
@@ -150,20 +152,15 @@
   let g:vimfiler_readonly_file_icon = '✗'
   let g:vimfiler_marked_file_icon = '✓'
 
-
+  call vimfiler#custom#profile('default', 'context', {
+      \ 'safe' : 0,
+      \ })
 """"""""""""""""""""""""""""""
 " matchit
 """"""""""""""""""""""""""""""
-"  function! neobundle#hooks.on_post_source(bundle)
-"    silent! execute 'doautocmd Filetype' &filetype
-"  endfunction
-
-
-""""""""""""""""""""""""""""""
-" vim-fullscreen
-""""""""""""""""""""""""""""""
-  nmap [Alt]<CR> <Plug>(fullscreen-toggle)
-
+  function! neobundle#hooks.on_post_source(bundle)
+    silent! execute 'doautocmd Filetype' &filetype
+  endfunction
 
 """"""""""""""""""""""""""""""
 " airline
@@ -214,9 +211,15 @@
 
 
 """"""""""""""""""""""""""""""
-" markbrowser setting
+" unite-mark
 """"""""""""""""""""""""""""""
-  nmap <silent> <leader>mk :MarksBrowser<cr>
+  nmap <silent> <leader>mk :<C-u>Unite  mark<cr>
+
+""""""""""""""""""""""""""""""
+" unite-quickfix
+""""""""""""""""""""""""""""""
+  nmap <silent> <leader>qf :<C-u>Unite  qf<cr>
+  nmap <silent> <leader>ll :<C-u>Unite  locationlist<cr>
 
 
 """"""""""""""""""""""""""""""
@@ -263,4 +266,18 @@
 " nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 " nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 " nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+""""""""""""""""""""""""""""""
+" Gundo setting
+""""""""""""""""""""""""""""""
+let g:gundo_width = 40
+let g:gundo_preview_height = 15
+let g:gundo_right = 1
+let g:gundo_preview_bottom = 1
+
+
+
+""""""""""""""""""""""""""""""
+" Tabularize
+""""""""""""""""""""""""""""""
 

@@ -1,4 +1,3 @@
-" Toggle options. "{{{
 function! ToggleOption(option_name)
   execute 'setlocal' a:option_name.'!'
   execute 'setlocal' a:option_name.'?'
@@ -65,6 +64,7 @@ function! s:BufferDelete()
 endfunction
 
 "}}}
+
 
 " Remove trailing white spaces  "{{{
 func! DeleteTrailingWS()
@@ -179,7 +179,8 @@ function! AlignAssignments ()
 endfunction
 "}}}
 
-" Switch between hex and normal mode {{{
+
+" Switch between hex and normal mode "{{{
 let $in_hex=0
 function! HexMe()
         set binary
@@ -194,7 +195,8 @@ function! HexMe()
 endfunction
 " }}}
 
-" Set tabstop, softtabstop and shiftwidth to the same value {{{
+
+" Set tabstop, softtabstop and shiftwidth to the same value "{{{
 function! Stab()
   let l:tabstop = 1 * input('set tabstop = softtabstop = shiftwidth = ')
   if l:tabstop > 0
@@ -219,5 +221,19 @@ function! SummarizeTabs()
   finally
     echohl None
   endtry
+endfunction
+"}}}
+
+
+" Automatically alignment when typing "{{{
+function! AutoAlignBar()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
 endfunction
 "}}}

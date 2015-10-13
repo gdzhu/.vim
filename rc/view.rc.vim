@@ -121,7 +121,7 @@ set magic
 set viminfo='50,\"100,:20,%,n~/.viminfo
 
 augroup vimrc
-  autocmd BufWinLeave *
+  autocmd BufWinLeave,BufHidden *
         \   if expand('%') != '' && &buftype !~ 'nofile'
         \|      mkview
         \|  endif

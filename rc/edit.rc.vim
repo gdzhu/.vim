@@ -1,4 +1,3 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Edit
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set to auto read when a file is changed from the outside
@@ -35,11 +34,11 @@ set infercase
 " Enable folding.
 set foldenable
 " set foldmethod=expr
-set foldmethod=marker
+set foldmethod=syntax
 " Show folding level.
-set foldcolumn=1
+set foldcolumn=2
 set fillchars=vert:\|
-set commentstring=%s
+" set commentstring=%s
 
 " Use grep.
 set grepprg=grep\ -inH

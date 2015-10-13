@@ -41,14 +41,19 @@ call neobundle#begin(expand('$CACHE/neobundle'))
   NeoBundle 'altercation/vim-colors-solarized'
   NeoBundle 'tpope/vim-unimpaired'
   NeoBundle 'bling/vim-airline'
-  NeoBundle 'vim-scripts/Marks-Browser'
-  NeoBundle 'vim-scripts/matchit.zip'
+  NeoBundle 'godlygeek/tabular'
   NeoBundle 'scrooloose/syntastic'
+  NeoBundle 'sjl/gundo.vim'
+  NeoBundle 'vim-scripts/matchit.zip'
   NeoBundle 'vim-scripts/ShowMarks7'
   NeoBundle 'vim-scripts/surround.vim'
   NeoBundle 'vim-scripts/Tagbar'
   NeoBundle 'vim-scripts/The-NERD-Commenter'
   NeoBundle 'ctrlpvim/ctrlp.vim'
+  " Unite plugins
+  NeoBundle 'sgur/unite-qf'
+  NeoBundle 'tacroe/unite-mark'
+  " ====================
   NeoBundle 'shougo/unite.vim'
   NeoBundle 'shougo/vimfiler.vim'
   NeoBundle 'shougo/neosnippet-snippets'
@@ -56,15 +61,6 @@ call neobundle#begin(expand('$CACHE/neobundle'))
   NeoBundle 'shougo/neoinclude.vim'
   NeoBundle 'shougo/context_filetype.vim'
   NeoBundle 'shougo/neocomplete.vim'
-  NeoBundle 'shougo/vinarise.vim'
-  NeoBundle 'Shougo/vimproc.vim', {
-                  \ 'build' : {
-                  \     'windows' : 'tools\\update-dll-mingw',
-                  \     'cygwin' : 'make -f make_cygwin.mak',
-                  \     'mac' : 'make -f make_mac.mak',
-                  \     'unix' : 'make -f make_unix.mak',
-                  \    },
-                  \ }
 "  NeoBundleSaveCache
 "endif
 

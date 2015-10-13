@@ -76,7 +76,6 @@ nnoremap <silent> [Window]p  <C-w>s
 nnoremap <silent> [Window]v  <C-w>v
 nnoremap <silent> [Window]c  :<C-u>call SmartClose()<CR>
 nnoremap <silent> [Window]o  :<C-u>only<CR>
-nnoremap <silent> [Window]d  :<C-u>bp <BAR> bd #<CR>
 " Move around windows beyond tabs
 nnoremap <silent> <Tab> <C-w>w
 map <C-h> <C-w>h
@@ -84,45 +83,14 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" The prefix key.
-nnoremap [Alt]   <Nop>
-xnoremap [Alt]   <Nop>
-onoremap [Alt]   <Nop>
-nmap    e  [Alt]
-xmap    e  [Alt]
-omap    e  [Alt]
-
-nnoremap    [Alt]e   e
-xnoremap    [Alt]e   e
-
-" Insert blank line.
-nnoremap <silent> [Alt]o o<Space><BS><ESC>
-nnoremap <silent> [Alt]O O<Space><BS><ESC>
-
-" Yank to end of the line.
-nnoremap [Alt]y y$
-nnoremap Y y$
-
 " remap Ex-mode.
 nnoremap Q  q
-
-" Smart <C-f>, <C-b>.
-"noremap <expr> <C-f> max([winheight(0) - 2, 1])
-"      \ . "\<C-d>" . (line('w$') >= line('$') ? "L" : "H")
-"noremap <expr> <C-b> max([winheight(0) - 2, 1])
-"      \ . "\<C-u>" . (line('w0') <= 1 ? "H" : "L")
 
 " Disable ZZ.
 nnoremap ZZ  <Nop>
 
-" Paste next line.
-nnoremap <silent> [Alt]p o<ESC>p^
-nnoremap <silent> [Alt]P O<ESC>P^
-xnoremap <silent> [Alt]p o<ESC>p^
-xnoremap <silent> [Alt]P O<ESC>P^
-
 " If press h on head, fold close.
-"nnoremap <expr> h col('.') == 1 && foldlevel(line('.')) > 0 ? 'zc' : 'h'
+nnoremap <expr> h col('.') == 1 && foldlevel(line('.')) > 0 ? 'zc' : 'h'
 " If press l on fold, fold open.
 nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zo0' : 'l'
 
@@ -134,26 +102,13 @@ nnoremap <silent> <leader>ws :call DeleteTrailingWS()<ESC><ESC><cr>:w<cr>
 "Remove the Windows ^M
 nnoremap <silent> <Leader>dm mzHmx:%s/<C-V><cr>//ge<cr>'xzt'z:delm x z<cr>
 
-" " Quickfix
-" " The prefix key.
-" nnoremap [Quickfix]   <Nop>
-"
-" " Toggle quickfix window.
-" nnoremap <silent> [Quickfix]<Space>
-"       \ :<C-u>call ToggleQuickfixWindow()<CR>
-"
-" nnoremap <leader>cn :cn<cr>
-" nnoremap <leader>cp :cp<cr>
-" nnoremap <leader>cw :cw 10<cr>
-
 "Open a dummy buffer for paste
-nnoremap <leader>es :tabnew<cr>:setl buftype=nofile<cr>
-nnoremap <leader>ec :tabnew ~/tmp/scratch.txt<cr>
+nnoremap <leader>es :new<cr>:setl buftype=nofile<cr>
+nnoremap <leader>ec :new ~/tmp/scratch.txt<cr>
 
 " Fast grep
-nmap <silent> <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
-vmap <silent> <leader>lv :lv /<c-r>=GetVisualSelection()<cr>/ %<cr>:lw<cr>
-nmap <silent> <leader>;  :call AlignAssignments()<CR>
+nmap <silent> <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr><leader>ll
+vmap <silent> <leader>lv :lv /<c-r>=GetVisualSelection()<cr>/ %<cr><leader>ll
 
 " force save to read only file/privileged file
 cmap :w!! w !sudo tee % > /dev/null
@@ -166,11 +121,31 @@ command! -nargs=* Stab call Stab()
 nnoremap [Alt]<S-Tab> :call Stab()<CR>
 
 " Bubble single lines
-nnoremap <Up> [e
-nnoremap <Down> ]e
+nmap <Up> [e
+nmap <Down> ]e
 " Bubble multiple lines
-vnoremap <Up> [egv
-vnoremap <Down> ]egv
+vmap <Up> [egv
+vmap <Down> ]egv
 
 " Visually select the text that was last edited/pasted
 nnoremap gV `[v`]
+
+
+" Tabularize is a plugin for alignment
+autocmd VimEnter *
+\ if exists(":Tabularize")
+\|   nmap <Leader>a= :Tabularize /=<CR>
+\|   vmap <Leader>a= :Tabularize /=<CR>
+\|   nmap <Leader>a: :Tabularize /:\zs<CR>
+\|   vmap <Leader>a: :Tabularize /:\zs<CR>
+\| endif
+
+inoremap <silent> <Bar>   <Bar><Esc>:call AutoAlignBar()<CR>a
+
+" Visual undo history & undo branch
+nnoremap <Leader>un :GundoToggle<CR>
+
+" mappings for folding
+nnoremap <Space> za
+vnoremap <Space> za
+
