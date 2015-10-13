@@ -35,9 +35,13 @@ endfunction
 
 " Buffer related "{{{
 " close buffers smartly "{{{
-function! SmartClose()
+function! SmartClose(delete_buffer)
   if winnr('$') != 1
-    close
+    if a:delete_buffer == 1
+      call s:BufferDelete()
+    else
+      close
+    endif
   else
     call s:BufferDelete()
   endif
@@ -56,11 +60,29 @@ function! s:BufferDelete()
             bdelete
             echo "Buffer deleted. Created new buffer."
         else
-            bprevious
+            " TODO: same buffer in other windows need to switch as well
+            call <SID>SwitchOtherWin()
             bdelete #
             echo "Buffer deleted."
         endif
     endif
+endfunction
+
+function! s:SwitchOtherWin()
+  let l:winnr = winnr()
+  let l:bufnr = bufnr('%')
+  "let l:winlist = []
+  "windo let winlist += [winnr()]
+  "for w in l:winlist
+  let l:w = 1
+  while l:w <= winnr('$')
+    if winbufnr(w) == l:bufnr
+      exe l:w."wincmd w"
+      bprevious
+    endif
+    let l:w += 1
+  endwhile
+  exe l:winnr."wincmd w"
 endfunction
 
 "}}}

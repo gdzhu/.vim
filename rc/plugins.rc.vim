@@ -132,7 +132,7 @@
 """"""""""""""""""""""""""""""
 " unite
 """"""""""""""""""""""""""""""
-  nnoremap <silent> [Window]b :Unite -start-insert buffer -buffer-name="opened-buffers" -immediately<CR>
+  nnoremap <silent> [Window]b :Unite buffer -buffer-name="opened-buffers" -immediately<CR>
 
 
 """"""""""""""""""""""""""""""
@@ -141,7 +141,7 @@
   " noremap <silent>    [Window]s :<C-u>VimFilerBufferDir -buffer-name="Explorer"
   "                         \ -invisible -force-quit<CR>
   nnoremap <silent>   [Window]s   :<C-u>VimFilerExplorer -horizontal -auto-cd
-                          \ -status -parent -find -force-quit<CR>
+                          \ -status -parent -find -force-quit -explorer<CR>
   let g:vimfiler_safe_mode_by_default = 0
   let g:vimfiler_enable_clipboard = 0
   let g:vimfiler_as_default_explorer = 1
@@ -290,3 +290,10 @@ vmap X <Plug>(Exchange)
 nmap cxc <Plug>(ExchangeClear)
 nmap cxx <Plug>(ExchangeLine)
 
+""""""""""""""""""""""""""""""
+" Tabularize
+""""""""""""""""""""""""""""""
+
+  let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
+  let g:ctrlp_show_hidden = 1
+  let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
