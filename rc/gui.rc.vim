@@ -30,8 +30,10 @@ endif
 """""""""""""""""
 " Font
 """""""""""""""""
+set guifont=Sauce\ Code\ Powerline\ Light:h13
 if has("gui_gtk2")
-  set gfn=DejaVu\ Sans\ Mono\ for\ Powerline\ 10,
+  set gfn=Sauce\ Code\ Powerline\ Light:h13,
+        \DejaVu\ Sans\ Mono\ for\ Powerline\ 10,
         \DejaVu\ Sans\ Mono\ 10,
         \Courier\ New\ 10,
         \Courier\ 10,

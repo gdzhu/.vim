@@ -38,27 +38,46 @@ call neobundle#begin(expand('$CACHE/neobundle'))
 
 "if neobundle#load_cache()
   NeoBundleFetch 'shougo/neobundle.vim'
+  " Solarized color scheme
   NeoBundle 'altercation/vim-colors-solarized'
+  " Numerous bracket mappings
   NeoBundle 'tpope/vim-unimpaired'
+  " Powerline status line plugin
   NeoBundle 'bling/vim-airline'
+  " line up text according to pattern
   NeoBundle 'godlygeek/tabular'
+  " syntax
   NeoBundle 'scrooloose/syntastic'
+  " visual undo tree
   NeoBundle 'sjl/gundo.vim'
+  " exchange text
   NeoBundle 'tommcdo/vim-exchange'
+  " enhance % match
   NeoBundle 'vim-scripts/matchit.zip'
+  " add visual effects to marks
   NeoBundle 'vim-scripts/ShowMarks7'
+  " modify surroundings of text
   NeoBundle 'vim-scripts/surround.vim'
+  " Tag list
   NeoBundle 'vim-scripts/Tagbar'
+  " make commenting task easier
   NeoBundle 'vim-scripts/The-NERD-Commenter'
+  " search through files/buffers/MRU
   NeoBundle 'ctrlpvim/ctrlp.vim'
+  " Highlight Hex color pallets
+  NeoBundle 'ap/vim-css-color'
+  " Unite everything
+  NeoBundle 'shougo/unite.vim'
   " Unite plugins
   NeoBundle 'sgur/unite-qf'
   NeoBundle 'tacroe/unite-mark'
   " ====================
-  NeoBundle 'shougo/unite.vim'
+  " File Explorer
   NeoBundle 'shougo/vimfiler.vim'
+  " snippets
   NeoBundle 'shougo/neosnippet-snippets'
   NeoBundle 'shougo/neosnippet.vim'
+  " Cache based auto completion
   NeoBundle 'shougo/neoinclude.vim'
   NeoBundle 'shougo/context_filetype.vim'
   NeoBundle 'shougo/neocomplete.vim'

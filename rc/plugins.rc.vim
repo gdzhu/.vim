@@ -20,7 +20,7 @@
   " Set minimum keyword length.
   let g:neocomplete#min_keyword_length = 3
 
-  let g:neocomplete#enable_auto_select = 1
+  let g:neocomplete#enable_auto_select = 0
   let g:neocomplete#enable_cursor_hold_i = 0
 
   let g:neocomplete#enable_auto_delimiter = 1
@@ -50,10 +50,8 @@
   let g:neocomplete#ignore_source_files = []
 
   let g:neocomplete#sources#vim#complete_functions = {
-        \ 'Ref' : 'ref#complete',
         \ 'Unite' : 'unite#complete_source',
         \ 'VimFiler' : 'vimfiler#complete',
-        \ 'Vinarise' : 'vinarise#complete',
         \}
   " call neocomplete#custom#source('look', 'min_pattern_length', 4)
   " call neocomplete#custom#source('_', 'sorters', [])
@@ -76,10 +74,10 @@
   inoremap <expr> <C-p>  pumvisible() ? "\<C-p>" : "\<C-p>\<C-n>"
   " inoremap <expr> '  pumvisible() ? neocomplete#close_popup() : "'"
 
-  inoremap <silent><expr> <C-x><C-f>
-        \ neocomplete#start_manual_complete('file')
+  " inoremap <silent><expr> <C-x><C-f>
+  "       \ neocomplete#start_manual_complete('file')
 
-  inoremap <expr> <C-g>     neocomplete#undo_completion()
+  " inoremap <expr> <C-g>     neocomplete#undo_completion()
   inoremap <expr> <C-l>     neocomplete#complete_common_string()
 "}}}
   " <CR>: close popup and save indent.
@@ -89,15 +87,17 @@
   endfunction
 
   " <TAB>: completion.
-  inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ neocomplete#start_manual_complete()
-  function! s:check_back_space() "{{{
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-  endfunction"}}}
+  imap <expr><TAB>
+   \ pumvisible() ? "\<C-n>" :
+   \ neosnippet#expandable_or_jumpable() ?
+   \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+  smap <expr><TAB>
+   \ neosnippet#expandable_or_jumpable() ?
+   \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
   " <S-TAB>: completion back.
-  inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+  "inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
 
   let g:neocomplete#fallback_mappings = ["\<C-x>\<C-o>", "\<C-x>\<C-n>"]
 
@@ -107,7 +107,7 @@
 """"""""""""""""""""""""""""""
   " smap <silent>L     <Plug>(neosnippet_jump_or_expand)
   " xmap <silent>L     <Plug>(neosnippet_start_unite_snippet_target)
-  " imap <silent><S-Tab>     <Plug>(neosnippet_expand_or_jump)
+  imap <silent><S-Tab>     <Plug>(neosnippet_expand_or_jump)
   " smap <silent>K     <Plug>(neosnippet_expand_or_jump)
   " imap <silent>G     <Plug>(neosnippet_expand)
   " imap <silent><S-Tab>     <Plug>(neosnippet_start_unite_snippet)
@@ -140,7 +140,7 @@
 """"""""""""""""""""""""""""""
   " noremap <silent>    [Window]s :<C-u>VimFilerBufferDir -buffer-name="Explorer"
   "                         \ -invisible -force-quit<CR>
-  nnoremap <silent>   [Window]s   :<C-u>VimFilerExplorer -horizontal -auto-cd
+  nnoremap <silent>   [Window]s   :<C-u>VimFilerExplorer -horizontal -project
                           \ -status -parent -find -force-quit -explorer<CR>
   let g:vimfiler_safe_mode_by_default = 0
   let g:vimfiler_enable_clipboard = 0
@@ -213,13 +213,15 @@
 """"""""""""""""""""""""""""""
 " unite-mark
 """"""""""""""""""""""""""""""
+  let g:unite_source_line_enable_highlight = 1
   nmap <silent> <leader>mk :<C-u>Unite  mark<cr>
 
 """"""""""""""""""""""""""""""
 " unite-quickfix
 """"""""""""""""""""""""""""""
-  nmap <silent> <leader>qf :<C-u>Unite  qf<cr>
-  nmap <silent> <leader>ll :<C-u>Unite  locationlist<cr>
+  nmap <silent> <leader>qf :<C-u>Unite  -match-input -auto-highlight qf<cr>
+  nmap <silent> <leader>ll :<C-u>Unite  -match-input -auto-highlight locationlist<cr>
+
 
 
 """"""""""""""""""""""""""""""
