@@ -58,8 +58,12 @@ call neobundle#begin(expand('$CACHE/neobundle'))
   NeoBundle 'vim-scripts/ShowMarks7'
   " modify surroundings of text
   NeoBundle 'vim-scripts/surround.vim'
+  " Markdown preview
+  NeoBundle 'suan/vim-instant-markdown'
+  " Work with latex
+  NeoBundle 'vim-latex/vim-latex'
   " Tag list
-  NeoBundle 'vim-scripts/Tagbar'
+  " NeoBundle 'vim-scripts/Tagbar'
   " make commenting task easier
   NeoBundle 'vim-scripts/The-NERD-Commenter'
   " search through files/buffers/MRU
@@ -69,8 +73,8 @@ call neobundle#begin(expand('$CACHE/neobundle'))
   " Unite everything
   NeoBundle 'shougo/unite.vim'
   " Unite plugins
-  NeoBundle 'sgur/unite-qf'
-  NeoBundle 'tacroe/unite-mark'
+  NeoBundle 'sgur/unite-qf'             "quickfix
+  NeoBundle 'tacroe/unite-mark'         "marks
   " ====================
   " File Explorer
   NeoBundle 'shougo/vimfiler.vim'

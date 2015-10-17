@@ -19,6 +19,7 @@ if has("autocmd")
   autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
   autocmd FileType java setlocal ts=4 sts=4 sw=4 expandtab
   autocmd FileType c,cpp setlocal ts=4 sts=4 sw=4 expandtab
+  autocmd FileType tex setlocal ts=2 sts=2 sw=2 expandtab
 
   " Treat .rss files as XML
   autocmd BufNewFile,BufRead *.rss setfiletype xml
