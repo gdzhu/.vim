@@ -67,6 +67,6 @@ set keywordprg=:help
 
 " Use par as external formatter if possible
 if executable("par")
-    set formatprg=par\ -w78rq
+    set formatprg=par\ -w78
 endif
 
