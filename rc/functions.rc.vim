@@ -62,7 +62,7 @@ function! s:BufferDelete()
         else
             " TODO: same buffer in other windows need to switch as well
             call <SID>SwitchOtherWin()
-            bdelete #
+            silent bdelete #
             echo "Buffer deleted."
         endif
     endif

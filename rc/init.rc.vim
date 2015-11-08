@@ -41,7 +41,7 @@ call neobundle#begin(expand('$CACHE/neobundle'))
   " Solarized color scheme
   NeoBundle 'altercation/vim-colors-solarized'
   " Numerous bracket mappings
-  NeoBundle 'tpope/vim-unimpaired'
+"  NeoBundle 'tpope/vim-unimpaired'
   " Powerline status line plugin
   NeoBundle 'bling/vim-airline'
   " line up text according to pattern
