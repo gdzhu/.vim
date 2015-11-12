@@ -39,5 +39,6 @@ call s:sourcerc('functions.rc.vim')
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <F3> :delview
 map <F4> :mksession! $CACHE/vim_session <cr> " Quick write session with F2
 map <F5> :source $CACHE/vim_session <cr>     " And load session with F3

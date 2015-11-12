@@ -95,7 +95,7 @@ nmap <silent> <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr><leader>ll
 vmap <silent> <leader>lv :lv /<c-r>=GetVisualSelection()<cr>/ %<cr><leader>ll
 
 " force save to read only file/privileged file
-cmap :w!! w !sudo tee % > /dev/null
+cmap <silent>w!! w !sudo tee % > /dev/null
 
 " Switch between Hex and normal mode
 noremap <F8> :call HexMe()<CR>

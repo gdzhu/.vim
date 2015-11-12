@@ -42,6 +42,8 @@ call neobundle#begin(expand('$CACHE/neobundle'))
   NeoBundle 'altercation/vim-colors-solarized'
   " Numerous bracket mappings
 "  NeoBundle 'tpope/vim-unimpaired'
+  " delete view(s) created by mkview
+  NeoBundle 'delview'
   " Powerline status line plugin
   NeoBundle 'bling/vim-airline'
   " line up text according to pattern
