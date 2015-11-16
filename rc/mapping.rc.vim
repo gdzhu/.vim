@@ -73,11 +73,6 @@ nnoremap Q  :normal @q<cr>
 " Disable ZZ.
 nnoremap ZZ  <Nop>
 
-" If press h on head, fold close.
-nnoremap <expr> h col('.') == 1 && foldlevel(line('.')) > 0 ? 'zc' : 'h'
-" If press l on fold, fold open.
-nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zo0' : 'l'
-
 "Fast remove highlight search
 nnoremap <silent> <leader><cr> :noh<cr>:match<CR>
 
@@ -88,14 +83,14 @@ nnoremap <silent> <Leader>dm mzHmx:%s/<C-V><cr>//ge<cr>'xzt'z:delm x z<cr>
 
 "Open a dummy buffer for paste
 nnoremap <leader>es :enew<cr>:setl buftype=nofile<cr>
-nnoremap <leader>ec :enew ~/tmp/scratch.txt<cr>
+nnoremap <leader>ec :e /tmp/scratch.txt<cr>
 
 " Fast grep
 nmap <silent> <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr><leader>ll
 vmap <silent> <leader>lv :lv /<c-r>=GetVisualSelection()<cr>/ %<cr><leader>ll
 
 " force save to read only file/privileged file
-cmap <silent>w!! w !sudo tee % > /dev/null
+cmap <C-w> w !sudo tee % > /dev/null<cr>
 
 " Switch between Hex and normal mode
 noremap <F8> :call HexMe()<CR>
@@ -104,16 +99,8 @@ noremap <F8> :call HexMe()<CR>
 command! -nargs=* Stab call Stab()
 nnoremap [Alt]<S-Tab> :call Stab()<CR>
 
-" Bubble single lines
-nmap <Up> [e
-nmap <Down> ]e
-" Bubble multiple lines
-vmap <Up> [egv
-vmap <Down> ]egv
-
 " Visually select the text that was last edited/pasted
 nnoremap gV `[v`]
-
 
 " Tabularize is a plugin for alignment
 autocmd VimEnter *

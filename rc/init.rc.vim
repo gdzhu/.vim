@@ -42,8 +42,6 @@ call neobundle#begin(expand('$CACHE/neobundle'))
   NeoBundle 'altercation/vim-colors-solarized'
   " Numerous bracket mappings
 "  NeoBundle 'tpope/vim-unimpaired'
-  " delete view(s) created by mkview
-  NeoBundle 'delview'
   " Powerline status line plugin
   NeoBundle 'bling/vim-airline'
   " line up text according to pattern
@@ -96,7 +94,3 @@ filetype plugin indent on
 
 NeoBundleCheck
 
-if !has('vim_starting')
-  " Call on_source hook when reloading .vimrc
-  call neobundle#call_hook('on_source')
-endif

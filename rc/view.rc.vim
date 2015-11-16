@@ -128,5 +128,7 @@ augroup vimrc
   autocmd BufWinEnter *
         \   if expand('%') != '' && &buftype !~ 'nofile'
         \|      silent loadview
+        \|      silent call MyDeleteView()
+        \|      mkview
         \|  endif
 augroup END
