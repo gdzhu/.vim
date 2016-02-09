@@ -48,6 +48,8 @@ nnoremap <silent> <leader>cd :<C-u>call ChangeBufferDir()<CR>
 " Toggle relativenumber.
 nnoremap <silent> <leader>nu :<C-u>call ToggleOption('relativenumber')<CR>
 nnoremap <silent> <leader>sc :<C-u>call ToggleOption('spell')<CR>
+nnoremap <silent> <leader>p :<C-u>call ToggleOption('paste')<CR>
+nnoremap <silent> <F3> :<C-u>call ToggleOption('paste')<CR>
 
 " s: Windows and buffers(High priority)
 " The prefix key.

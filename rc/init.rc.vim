@@ -40,6 +40,8 @@ call neobundle#begin(expand('$CACHE/neobundle'))
   NeoBundleFetch 'shougo/neobundle.vim'
   " Solarized color scheme
   NeoBundle 'altercation/vim-colors-solarized'
+  " show the contents of the registers on the sidebar
+  NeoBundle 'junegunn/vim-peekaboo'
   " Numerous bracket mappings
 "  NeoBundle 'tpope/vim-unimpaired'
   " Powerline status line plugin
