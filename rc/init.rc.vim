@@ -40,6 +40,7 @@ call neobundle#begin(expand('$CACHE/neobundle'))
   NeoBundleFetch 'shougo/neobundle.vim'
   " Solarized color scheme
   NeoBundle 'altercation/vim-colors-solarized'
+  NeoBundle 'vim-airline/vim-airline-themes'
   " show the contents of the registers on the sidebar
   NeoBundle 'junegunn/vim-peekaboo'
   " Numerous bracket mappings
