@@ -40,10 +40,11 @@ call neobundle#begin(expand('$CACHE/neobundle'))
   NeoBundleFetch 'shougo/neobundle.vim'
   " Solarized color scheme
   NeoBundle 'altercation/vim-colors-solarized'
+  NeoBundle 'vim-airline/vim-airline-themes'
   " show the contents of the registers on the sidebar
   NeoBundle 'junegunn/vim-peekaboo'
   " Numerous bracket mappings
-"  NeoBundle 'tpope/vim-unimpaired'
+  NeoBundle 'tpope/vim-unimpaired'
   " Powerline status line plugin
   NeoBundle 'bling/vim-airline'
   " line up text according to pattern
@@ -60,6 +61,8 @@ call neobundle#begin(expand('$CACHE/neobundle'))
   NeoBundle 'vim-scripts/ShowMarks7'
   " modify surroundings of text
   NeoBundle 'vim-scripts/surround.vim'
+  " generate lorem Ipsum
+  NeoBundle 'vim-scripts/loremipsum'
   " Markdown preview
   NeoBundle 'suan/vim-instant-markdown'
   " Work with latex
