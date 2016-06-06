@@ -63,7 +63,7 @@ nnoremap <silent> [Window]c  :<C-u>call SmartClose(0)<CR>
 nnoremap <silent> [Window]d  :<C-u>call SmartClose(1)<CR>
 nnoremap <silent> [Window]o  :<C-u>only<CR>
 " Move around windows beyond tabs
-nnoremap <silent> <Tab> <C-w>w
+nnoremap <silent> <S-Tab> <C-w>w
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
