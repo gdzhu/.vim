@@ -31,14 +31,14 @@ set hidden
 " Ignore case on insert completion.
 set infercase
 
-" Enable folding.
-set foldenable
 " set foldmethod=expr
 set foldmethod=syntax
 " Show folding level.
 set foldcolumn=3
 set fillchars=vert:\|
 " set commentstring=%s
+" Enable folding.
+set nofoldenable
 
 " Use grep.
 set grepprg=grep\ -inH

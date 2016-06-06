@@ -20,6 +20,7 @@ if has("autocmd")
   autocmd FileType java setlocal ts=4 sts=4 sw=4 expandtab
   autocmd FileType c,cpp setlocal ts=4 sts=4 sw=4 expandtab
   autocmd FileType tex setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType shell setlocal ts=4 sts=4 sw=4 expandtab
 
   " Treat .rss files as XML
   autocmd BufNewFile,BufRead *.rss setfiletype xml
@@ -35,7 +36,6 @@ autocmd FileType sql setlocal omnifunc=sqlcomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable syntax
-autocmd Filetype *
       \if &omnifunc == "" |
       \  setlocal omnifunc=syntaxcomplete#Complete |
       \endif
@@ -64,6 +64,7 @@ autocmd FileType go highlight default link goErr WarningMsg |
       \ match goErr /\<err\>/
 
 
+" Related to FastFold
 " PHP
 let g:php_folding = 0
 

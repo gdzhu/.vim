@@ -280,10 +280,6 @@ let g:gundo_preview_bottom = 1
 
 
 """"""""""""""""""""""""""""""
-" Tabularize
-""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""
 " exchange.vim
 """"""""""""""""""""""""""""""
 let g:exchange_no_mappings=1
@@ -301,6 +297,15 @@ nmap cxx <Plug>(ExchangeLine)
   let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 
+
+
+" """"""""""""""""""""""""""""""
+" " FastFold
+" """"""""""""""""""""""""""""""
+"
+"
+"     nmap <F5> <Plug>(FastFoldUpdate)
+"   let g:fastfold_savehook = 1
 
 
 """"""""""""""""""""""""""""""

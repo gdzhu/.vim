@@ -9,18 +9,21 @@ set t_Co=256
 " ColorScheme
 """""""""""""""""
 set background=dark
-"set background=light
+set background=light
 "let g:solarized_termcolors=256
 "let g:solarized_termcolors=16
-let g:solarized_termtrans=1
 colorscheme solarized
+let g:solarized_termtrans=0
+let g:solarized_contrast="high"
 
 
 "Highlight current
-set cursorline
-hi CursorLine guibg=#303030 ctermbg=236
-set cursorcolumn
-hi CursorColumn guibg=#303030 ctermbg=236
+if &bg == "dark"
+  set cursorline
+  hi CursorLine guibg=#303030 ctermbg=236
+  set cursorcolumn
+  hi CursorColumn guibg=#303030 ctermbg=236
+endif
 
 if v:version >= 703
   hi ColorColumn term=reverse ctermbg=236 guibg=#303030

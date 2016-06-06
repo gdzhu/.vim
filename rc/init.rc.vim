@@ -47,6 +47,8 @@ call neobundle#begin(expand('$CACHE/neobundle'))
 "  NeoBundle 'tpope/vim-unimpaired'
   " Powerline status line plugin
   NeoBundle 'bling/vim-airline'
+  " Speed up Vim by updating folds only when called-for.
+  "NeoBundle 'Konfekt/FastFold.git'
   " line up text according to pattern
   NeoBundle 'godlygeek/tabular'
   " syntax
