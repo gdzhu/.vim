@@ -9,7 +9,7 @@ set t_Co=256
 " ColorScheme
 """""""""""""""""
 set background=dark
-set background=light
+"set background=light
 "let g:solarized_termcolors=256
 "let g:solarized_termcolors=16
 colorscheme solarized
