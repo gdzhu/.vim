@@ -37,29 +37,24 @@ cnoremap <C-k> <C-\>e getcmdpos() == 1 ?
 " <C-y>: paste.
 cnoremap <C-y>          <C-r>*
 
-
 """""""""""""""""
 " Visual Mode
 """""""""""""""""
 " Change current directory.
 nnoremap <silent> <leader>cd :<C-u>call ChangeBufferDir()<CR>
-
 " Toggle relativenumber.
 nnoremap <silent> <leader>nu :<C-u>call ToggleOption('relativenumber')<CR>
 nnoremap <silent> <leader>sc :<C-u>call ToggleOption('spell')<CR>
 nnoremap <silent> <leader>p :<C-u>call ToggleOption('paste')<CR>
 
-" s: Windows and buffers(High priority)
-" The prefix key.
-nnoremap    [Window]   <Nop>
-nmap    s [Window]
+nnoremap <silent> <leader>v  <C-w>v
+nnoremap <silent> <leader>sc  :<C-u>call SmartClose(0)<CR>
+nnoremap <silent> <leader>sd  :<C-u>call SmartClose(1)<CR>
+nnoremap <silent> <leader>so  :<C-u>only<CR>
 
-" Windows
-nnoremap <silent> [Window]p  <C-w>s
-nnoremap <silent> [Window]v  <C-w>v
-nnoremap <silent> [Window]c  :<C-u>call SmartClose(0)<CR>
-nnoremap <silent> [Window]d  :<C-u>call SmartClose(1)<CR>
-nnoremap <silent> [Window]o  :<C-u>only<CR>
+nnoremap <silent> <leader>sb :<C-u>call ShowBuffer()<CR>
+nnoremap <silent> <leader>ss :Hexplore!<CR>
+
 " Move around windows beyond tabs
 nnoremap <silent> <S-Tab> <C-w>w
 map <C-h> <C-w>h
