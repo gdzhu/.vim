@@ -24,11 +24,21 @@ if has("autocmd")
   autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
   autocmd FileType make       setlocal ts=8 sts=8 sw=8 noexpandtab
 
+
+autocmd FileType php        setl ofu=phpcomplete#CompletePHP
+autocmd FileType ruby,eruby setl ofu=rubycomplete#Complete
+autocmd FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
+autocmd FileType markdown   setl ofu=htmlcomplete#CompleteTags
+autocmd FileType cpp        setl ofu=ccomplete#CompleteCpp
+autocmd FileType css        setl ofu=csscomplete#CompleteCSS
+autocmd FileType javascript setl ofu=javascriptcomplete#CompleteJS
+autocmd FileType python     setl ofu=pythoncomplete#Complete
+autocmd FileType xml        setl ofu=xmlcomplete#CompleteTags
+
   autocmd FileType python setlocal foldmethod=indent
 
   " Treat .rss files as XML
   autocmd BufNewFile,BufRead *.rss setfiletype xml
-
 
   " Update filetype.
   autocmd BufWritePost *

@@ -18,61 +18,57 @@ if !isdirectory(expand($UNDO))
         call mkdir(expand('$UNDO', 'p'))
 endif
 
-" Required:
-set runtimepath^=~/.vim/.cache/bundle/repos/github.com/Shougo/dein.vim
-
-" Required:
-call dein#begin(expand('$CACHE/bundle'))
-
-" Let dein manage dein
-" Required:
-call dein#add( 'Shougo/dein.vim' )
-
+set nocompatible
+filetype off
+set runtimepath^=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
 " Solarized color scheme
-call dein#add( 'altercation/vim-colors-solarized' )
-call dein#add( 'vim-airline/vim-airline-themes' )
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-airline/vim-airline-themes'
 " show the contents of the registers on the sidebar
-call dein#add( 'junegunn/vim-peekaboo' )
+Plugin 'junegunn/vim-peekaboo'
 " Numerous bracket mappings
-call dein#add( 'tpope/vim-unimpaired' )
+Plugin 'tpope/vim-unimpaired'
 " Powerline status line plugin
-call dein#add( 'bling/vim-airline' )
+Plugin 'bling/vim-airline'
 " Speed up Vim by updating folds only when called-for.
-call dein#add( 'Konfekt/FastFold.git' )
+Plugin 'Konfekt/FastFold.git'
 " line up text according to pattern
-call dein#add( 'godlygeek/tabular' )
+Plugin 'godlygeek/tabular'
 " syntax
-call dein#add( 'scrooloose/syntastic' )
+Plugin 'scrooloose/syntastic'
 " visual undo tree
-call dein#add( 'sjl/gundo.vim' )
+Plugin 'sjl/gundo.vim'
 " exchange text
-call dein#add( 'tommcdo/vim-exchange' )
+Plugin 'tommcdo/vim-exchange'
 " enhance % match
-call dein#add( 'vim-scripts/matchit.zip' )
+Plugin 'vim-scripts/matchit.zip'
 " add visual effects to marks
-call dein#add( 'vim-scripts/ShowMarks7' )
+Plugin 'vim-scripts/ShowMarks7'
 " modify surroundings of text
-call dein#add( 'vim-scripts/surround.vim' )
+Plugin 'vim-scripts/surround.vim'
 " generate lorem Ipsum
-call dein#add( 'vim-scripts/loremipsum' )
+Plugin 'vim-scripts/loremipsum'
 " Markdown preview
-call dein#add( 'suan/vim-instant-markdown' )
+Plugin 'suan/vim-instant-markdown'
 " Work with latex
-call dein#add( 'vim-latex/vim-latex' )
+Plugin 'vim-latex/vim-latex'
 " Tag list
-call dein#add( 'vim-scripts/Tagbar' )
+Plugin 'vim-scripts/Tagbar'
 " make commenting task easier
-call dein#add( 'vim-scripts/The-NERD-Commenter' )
+Plugin 'vim-scripts/The-NERD-Commenter'
 " search through files/buffers/MRU
-call dein#add( 'ctrlpvim/ctrlp.vim' )
+Plugin 'ctrlpvim/ctrlp.vim'
 " Highlight Hex color pallets
-call dein#add( 'ap/vim-css-color' )
+Plugin 'ap/vim-css-color'
 
-call dein#end()
+Plugin 'Shougo/neocomplete'
+" snippets
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
+call vundle#end()
 
 filetype plugin indent on
 
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-        call dein#install()
-endif
