@@ -1,12 +1,9 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " View
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Sets how many lines of history VIM have to remember
-set history=4000
-
-" Set encoding
-set encoding=utf-8
-set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+" Don't flick cursor.
+set guicursor&
+set guicursor+=a:blinkon0
 
 " Show <TAB> and <CR>
 set list
@@ -25,6 +22,7 @@ set noshowcmd
 set linebreak
 set showbreak=\
 set breakat=\ \	;:,!?
+
 " Wrap conditions.
 set whichwrap+=h,l,<,>,[,],b,s,~
 if exists('+breakindent')
@@ -34,30 +32,19 @@ else
   set nowrap
 endif
 
-" Don't create backup.
-set nowritebackup
-set nobackup
-set noswapfile
-set backupdir-=.
-
 " Display candidate supplement.
 set nowildmenu
 set wildmode=list:longest,full
-" Increase history amount.
-set history=2000
 " Display all the information of the tag by the supplement of the Insert mode.
 set showfulltag
 " Can supplement a tag in a command-line.
 set wildoptions=tagfile
 
-" Disable menu
-let g:did_install_default_menus = 1
-
 " Enable spell check.
 set spelllang=en_us
 
 " Completion setting.
-set completeopt=menuone
+set completeopt=menuone,preview
 " Don't complete from other buffer.
 set complete=.
 " Set popup menu max height.
@@ -73,17 +60,13 @@ set nostartofline
 set splitbelow
 " Splitting a window will put the new window right the current one.
 set splitright
-" Set minimal width for current window.
-set winwidth=30
-" Set minimal height for current window.
-set winheight=1
 " Set maximam maximam command line window.
 set cmdwinheight=5
 " No equal window size.
 set noequalalways
 
 " Adjust window size of preview and help.
-set previewheight=8
+set previewheight=12
 set helpheight=12
 
 " When a line is long, do not omit it in @.

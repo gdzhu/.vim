@@ -1,7 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GUI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 syntax enable
 set t_Co=256
 
@@ -71,10 +70,3 @@ set guioptions-=e
 
 " Confirm without window.
 set guioptions+=c
-
-"""""""""""""""""
-" View
-"""""""""""""""""
-" Don't flick cursor.
-set guicursor&
-set guicursor+=a:blinkon0

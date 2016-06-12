@@ -41,3 +41,6 @@ call s:sourcerc('functions.rc.vim')
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <F4> :mksession! $CACHE/vim_session <cr> " Quick write session with F2
 map <F5> :source $CACHE/vim_session <cr>     " And load session with F3
+" Switch between Hex and normal mode
+noremap <F8> <Esc>:call HexMe()<CR>
+nmap <F12> <Esc>:!ctags -R *<CR>

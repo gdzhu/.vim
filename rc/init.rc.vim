@@ -7,97 +7,72 @@ let $UNDO = expand('$CACHE/vim_undo')
 let $VIEW = expand('$CACHE/vim_view')
 
 if !isdirectory(expand($CACHE))
-  call mkdir(expand('$CACHE', 'p'))
+        call mkdir(expand('$CACHE', 'p'))
 endif
 
 if !isdirectory(expand($VIEW))
-  call mkdir(expand('$VIEW', 'p'))
+        call mkdir(expand('$VIEW', 'p'))
 endif
 
 if !isdirectory(expand($UNDO))
-  call mkdir(expand('$UNDO', 'p'))
+        call mkdir(expand('$UNDO', 'p'))
 endif
 
-if has('vim_starting')
-  " Load neobundle
-  let s:neobundle_dir = finddir('neobundle.vim', '.;')
-  if s:neobundle_dir != ''
-    execute 'set runtimepath^=' .fnamemodify(s:neobundle_dir, ':p')
-  elseif &runtimepath !~ '/neobundle.vim'
-    let s:neobundle_dir = expand('$CACHE/neobundle').'/neobundle.vim/'
-    if !isdirectory(s:neobundle_dir)
-      execute printf('!git clone %s://github.com/Shougo/neobundle.vim.git',
-            \ (exists('$http_proxy') ? 'https' : 'git'))
-            \ s:neobundle_dir
-    endif
-    execute 'set runtimepath^=' . s:neobundle_dir
-  endif
-endif
+" Required:
+set runtimepath^=~/.vim/.cache/bundle/repos/github.com/Shougo/dein.vim
 
-call neobundle#begin(expand('$CACHE/neobundle'))
+" Required:
+call dein#begin(expand('$CACHE/bundle'))
 
-"if neobundle#load_cache()
-  NeoBundleFetch 'shougo/neobundle.vim'
-  " Solarized color scheme
-  NeoBundle 'altercation/vim-colors-solarized'
-  NeoBundle 'vim-airline/vim-airline-themes'
-  " show the contents of the registers on the sidebar
-  NeoBundle 'junegunn/vim-peekaboo'
-  " Numerous bracket mappings
-  NeoBundle 'tpope/vim-unimpaired'
-  " Powerline status line plugin
-  NeoBundle 'bling/vim-airline'
-  " Speed up Vim by updating folds only when called-for.
-  "NeoBundle 'Konfekt/FastFold.git'
-  " line up text according to pattern
-  NeoBundle 'godlygeek/tabular'
-  " syntax
-  NeoBundle 'scrooloose/syntastic'
-  " visual undo tree
-  NeoBundle 'sjl/gundo.vim'
-  " exchange text
-  NeoBundle 'tommcdo/vim-exchange'
-  " enhance % match
-  NeoBundle 'vim-scripts/matchit.zip'
-  " add visual effects to marks
-  NeoBundle 'vim-scripts/ShowMarks7'
-  " modify surroundings of text
-  NeoBundle 'vim-scripts/surround.vim'
-  " generate lorem Ipsum
-  NeoBundle 'vim-scripts/loremipsum'
-  " Markdown preview
-  NeoBundle 'suan/vim-instant-markdown'
-  " Work with latex
-  NeoBundle 'vim-latex/vim-latex'
-  " Tag list
-  " NeoBundle 'vim-scripts/Tagbar'
-  " make commenting task easier
-  NeoBundle 'vim-scripts/The-NERD-Commenter'
-  " search through files/buffers/MRU
-  NeoBundle 'ctrlpvim/ctrlp.vim'
-  " Highlight Hex color pallets
-  NeoBundle 'ap/vim-css-color'
-  " Unite everything
-  NeoBundle 'shougo/unite.vim'
-  " Unite plugins
-  NeoBundle 'sgur/unite-qf'             "quickfix
-  NeoBundle 'tacroe/unite-mark'         "marks
-  " ====================
-  " File Explorer
-  NeoBundle 'shougo/vimfiler.vim'
-  " snippets
-  NeoBundle 'shougo/neosnippet-snippets'
-  NeoBundle 'shougo/neosnippet.vim'
-  " Cache based auto completion
-  NeoBundle 'shougo/neoinclude.vim'
-  NeoBundle 'shougo/context_filetype.vim'
-  NeoBundle 'shougo/neocomplete.vim'
-"  NeoBundleSaveCache
-"endif
+" Let dein manage dein
+" Required:
+call dein#add( 'Shougo/dein.vim' )
 
-call neobundle#end()
+" Solarized color scheme
+call dein#add( 'altercation/vim-colors-solarized' )
+call dein#add( 'vim-airline/vim-airline-themes' )
+" show the contents of the registers on the sidebar
+call dein#add( 'junegunn/vim-peekaboo' )
+" Numerous bracket mappings
+call dein#add( 'tpope/vim-unimpaired' )
+" Powerline status line plugin
+call dein#add( 'bling/vim-airline' )
+" Speed up Vim by updating folds only when called-for.
+call dein#add( 'Konfekt/FastFold.git' )
+" line up text according to pattern
+call dein#add( 'godlygeek/tabular' )
+" syntax
+call dein#add( 'scrooloose/syntastic' )
+" visual undo tree
+call dein#add( 'sjl/gundo.vim' )
+" exchange text
+call dein#add( 'tommcdo/vim-exchange' )
+" enhance % match
+call dein#add( 'vim-scripts/matchit.zip' )
+" add visual effects to marks
+call dein#add( 'vim-scripts/ShowMarks7' )
+" modify surroundings of text
+call dein#add( 'vim-scripts/surround.vim' )
+" generate lorem Ipsum
+call dein#add( 'vim-scripts/loremipsum' )
+" Markdown preview
+call dein#add( 'suan/vim-instant-markdown' )
+" Work with latex
+call dein#add( 'vim-latex/vim-latex' )
+" Tag list
+call dein#add( 'vim-scripts/Tagbar' )
+" make commenting task easier
+call dein#add( 'vim-scripts/The-NERD-Commenter' )
+" search through files/buffers/MRU
+call dein#add( 'ctrlpvim/ctrlp.vim' )
+" Highlight Hex color pallets
+call dein#add( 'ap/vim-css-color' )
+
+call dein#end()
 
 filetype plugin indent on
 
-NeoBundleCheck
-
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+        call dein#install()
+endif

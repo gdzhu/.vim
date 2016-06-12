@@ -14,7 +14,6 @@ inoremap <silent><C-a>  <C-o>^
 inoremap <C-w>  <C-g>u<C-w>
 inoremap <C-u>  <C-g>u<C-u>
 
-
 """""""""""""""""
 " Commandline Mode
 """""""""""""""""
@@ -49,7 +48,6 @@ nnoremap <silent> <leader>cd :<C-u>call ChangeBufferDir()<CR>
 nnoremap <silent> <leader>nu :<C-u>call ToggleOption('relativenumber')<CR>
 nnoremap <silent> <leader>sc :<C-u>call ToggleOption('spell')<CR>
 nnoremap <silent> <leader>p :<C-u>call ToggleOption('paste')<CR>
-nnoremap <silent> <F3> :<C-u>call ToggleOption('paste')<CR>
 
 " s: Windows and buffers(High priority)
 " The prefix key.
@@ -69,7 +67,7 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" remap Ex-mode.
+" remap Ex-mode to repeat macro
 nnoremap Q  :normal @q<cr>
 
 " Disable ZZ.
@@ -87,19 +85,17 @@ nnoremap <silent> <Leader>dm mzHmx:%s/<C-V><cr>//ge<cr>'xzt'z:delm x z<cr>
 nnoremap <leader>es :enew<cr>:setl buftype=nofile<cr>
 nnoremap <leader>ec :e /tmp/scratch.txt<cr>
 
+nnoremap <leader>ll :lw<CR>
+let g:syntastic_auto_loc_list=0
 " Fast grep
 nmap <silent> <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr><leader>ll
 vmap <silent> <leader>lv :lv /<c-r>=GetVisualSelection()<cr>/ %<cr><leader>ll
 
 " force save to read only file/privileged file
-cmap <C-w> w !sudo tee % > /dev/null<cr>
-
-" Switch between Hex and normal mode
-noremap <F8> :call HexMe()<CR>
+"cmap <C-w> w !sudo tee % > /dev/null<cr>
 
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
-nnoremap [Alt]<S-Tab> :call Stab()<CR>
 
 " Visually select the text that was last edited/pasted
 nnoremap gV `[v`]
@@ -113,12 +109,8 @@ autocmd VimEnter *
 \|   vmap <Leader>a: :Tabularize /:\zs<CR>
 \| endif
 
-inoremap <silent> <Bar>   <Bar><Esc>:call AutoAlignBar()<CR>a
+inoremap <silent> <Bar> <Bar><Esc>:call AutoAlignBar()<CR>a
 
 " Visual undo history & undo branch
 nnoremap <Leader>un :GundoToggle<CR>
-
-" mappings for folding
-nnoremap <Space> za
-vnoremap <Space> za
 

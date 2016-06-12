@@ -1,3 +1,4 @@
+" Toggle Options. "{{{
 function! ToggleOption(option_name)
   execute 'setlocal' a:option_name.'!'
   execute 'setlocal' a:option_name.'?'

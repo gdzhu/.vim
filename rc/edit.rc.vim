@@ -33,12 +33,13 @@ set infercase
 
 " set foldmethod=expr
 set foldmethod=syntax
+set foldmethod=manual
 " Show folding level.
 set foldcolumn=3
 set fillchars=vert:\|
 " set commentstring=%s
 " Enable folding.
-set nofoldenable
+set foldenable
 
 " Use grep.
 set grepprg=grep\ -inH
@@ -69,4 +70,17 @@ set keywordprg=:help
 if executable("par")
     set formatprg=par\ -w78
 endif
+
+" Sets how many lines of history VIM have to remember
+set history=4000
+
+" Set encoding
+set encoding=utf-8
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+
+" Don't create backup.
+set nowritebackup
+set nobackup
+set noswapfile
+set backupdir-=.
 
