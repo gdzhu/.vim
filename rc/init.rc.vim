@@ -67,7 +67,6 @@ Plugin 'Valloric/YouCompleteMe'
 " snippets
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'ervandew/supertab'
 
 call vundle#end()
 
