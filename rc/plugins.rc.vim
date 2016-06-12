@@ -171,46 +171,27 @@ au FileType markdown setlocal shell=bash\ -i
 """"""""""""""""""""""""""""""
 " Snippets
 """"""""""""""""""""""""""""""
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="~"
+let g:UltiSnipsExpandTrigger="<C-e>"
 
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+""""""""""""""""""""""""""""""
+" YCM
+""""""""""""""""""""""""""""""
+let g:ycm_filetype_blacklist = {
+      \ 'tagbar' : 1,
+      \ 'qf' : 1,
+      \ 'gitcommit' : 1,
+      \}
+
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_complete_in_comments=1
+let g:ycm_min_num_of_chars_for_completion=2
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
 
 
 """"""""""""""""""""""""""""""
-" neocomplete
+" SuperTab
 """"""""""""""""""""""""""""""
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" <BS>: close popup and delete backword char.
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-
+"let g:ycm_key_list_select_completion = ['\<C-TAB>', '\<Down>']
+"let g:ycm_key_list_previous_completion = ['\<C-S-TAB>', '\<Up>']
+"let g:SuperTabDefaultCompletionType = '\<C-Tab>'
