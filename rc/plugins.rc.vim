@@ -189,3 +189,8 @@ nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 
 
+let g:ctrlp_match_window = 'top,order:ttb,min:10,max:20'
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_open_single_match = ['buffer tags', 'buffer']
+let g:ctrlp_use_caching = 1

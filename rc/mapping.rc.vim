@@ -52,8 +52,10 @@ nnoremap <silent> <leader>sc  :<C-u>call SmartClose(0)<CR>
 nnoremap <silent> <leader>sd  :<C-u>call SmartClose(1)<CR>
 nnoremap <silent> <leader>so  :<C-u>only<CR>
 
-nnoremap <silent> <leader>sb :<C-u>call ShowBuffer()<CR>
-nnoremap <silent> <leader>ss :Hexplore!<CR>
+" use ctrlp instead
+" nnoremap <silent> <leader>sb :<C-u>call ShowBuffer()<CR>
+nnoremap <silent> <leader>ss :CtrlPBuffer<CR>
+nnoremap <silent> <C-P> :CtrlPBuffer<CR>
 
 " Move around windows beyond tabs
 nnoremap <silent> <S-Tab> <C-w>w
