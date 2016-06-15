@@ -1,4 +1,4 @@
 !.gitignore
-.cache
 tags
-snippets/*
+bundle/*
+.cache/*
