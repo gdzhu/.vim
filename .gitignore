@@ -1,4 +1,5 @@
 !.gitignore
 tags
 bundle/*
+!bundle/Vundle.vim
 .cache/*
