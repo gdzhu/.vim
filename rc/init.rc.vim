@@ -2,16 +2,17 @@
 " Init
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set Cache
-let $CACHE = expand('$HOME/.vim/.cache')
-let $UNDO = expand('$CACHE/vim_undo')
-let $VIEW = expand('$CACHE/vim_view')
+let $VIMDIR = expand('$HOME/.vim', 'p')
+let $CACHE = $VIMDIR.'/.cache'
+let $UNDO = $CACHE.'/vim_undo'
+let $VIEW = $CACHE.'/vim_view'
 
-if !isdirectory(expand($VIEW))
-  call mkdir(expand('$VIEW', 'p'))
+if !isdirectory($VIEW)
+  call mkdir($VIEW, 'p')
 endif
 
-if !isdirectory(expand($UNDO))
-  call mkdir(expand('$UNDO', 'p'))
+if !isdirectory($UNDO)
+  call mkdir($UNDO, 'p')
 endif
 
 " check if Plug is installed
@@ -19,7 +20,9 @@ let s:bundledir = expand('$HOME/.vim/bundle')
 let s:plugdir = expand(s:bundledir.'/vim-plug')
 if !isdirectory(s:plugdir)
   let s:giturl='https://github.com/junegunn/vim-plug.git'
-  silent exec '!git clone '.s:giturl s:plugdir
+  silent exec '!git clone' s:giturl s:plugdir
+  silent exec '!ln -sf ' s:plugdir.'/plug.vim'
+        \$VIMDIR.'/autoload/plug.vim'
 endif
 
 call plug#begin(s:bundledir) "{{{
@@ -52,8 +55,8 @@ call plug#end()
 " }}}
 
 let g:plug_window="new"
-if exists('s:giturl') && s:giturl
+if exists('s:giturl')
   unlet s:giturl
-  autocmd VimEnter * PlugUpdate 
+  autocmd VimEnter * PlugUpdate
         \| source expand('$HOME/.vimrc')
 endif

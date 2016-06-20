@@ -1,1 +1,0 @@
-/home/guodong/.vim/bundle/vim-plug/plug.vim
