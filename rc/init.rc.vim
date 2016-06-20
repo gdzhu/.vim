@@ -16,17 +16,13 @@ if !isdirectory($UNDO)
 endif
 
 " check if Plug is installed
-let s:bundledir = expand('$HOME/.vim/bundle')
-let s:plugdir = expand(s:bundledir.'/vim-plug')
-if !isdirectory(s:plugdir)
-  let s:giturl='https://github.com/junegunn/vim-plug.git'
-  silent exec '!git clone' s:giturl s:plugdir
-  silent exec '!ln -sf ' s:plugdir.'/plug.vim'
-        \$VIMDIR.'/autoload/plug.vim'
+let s:plugfile = $VIMDIR.'/autoload/plug.vim'
+if empty(glob(s:plugfile))
+  let s:giturl='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  silent exec '!curl -fLo' s:plugfile '--create-dirs' s:giturl
 endif
 
-call plug#begin(s:bundledir) "{{{
-  Plug 'junegunn/vim-plug'                " Plugin manager
+call plug#begin($VIMDIR.'/bundle') "{{{
   Plug 'altercation/vim-colors-solarized' " Solarized color scheme
   Plug 'vim-airline/vim-airline-themes'   " airline themes
   Plug 'junegunn/vim-peekaboo'            " show the contents of the registers on the sidebar
@@ -40,7 +36,6 @@ call plug#begin(s:bundledir) "{{{
   Plug 'vim-scripts/ShowMarks7'           " add visual effects to marks
   Plug 'vim-scripts/surround.vim'         " modify surroundings of text
   Plug 'vim-scripts/loremipsum'           " generate lorem Ipsum
-  Plug 'suan/vim-instant-markdown'        " Markdown preview
   Plug 'vim-latex/vim-latex'              " Work with latex
   Plug 'vim-scripts/Tagbar'               " Tag list
   Plug 'Konfekt/FastFold'                 " Speed up Vim by updateing folds only when called-for
@@ -55,8 +50,8 @@ call plug#end()
 " }}}
 
 let g:plug_window="new"
-if exists('s:giturl')
+if exists('s:giturl') && has('vim_starting')
   unlet s:giturl
-  autocmd VimEnter * PlugUpdate
-        \| source expand('$HOME/.vimrc')
+  let $MYRC=expand($HOME.'/.vimrc', 'p')
+  PlugUpdate | normal q | source $MYRC
 endif

@@ -1,4 +1,4 @@
 !.gitignore
-tags
 bundle/*
 .cache/*
+autoload/*

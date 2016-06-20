@@ -19,24 +19,26 @@ plugin list
 
 
    -------------------------------------------------------------
-     shougo/neobundle.vim                " bundle manager  
-     altercation/vim-colors-solarized    " solarized color scheme  
-     tpope/vim-unimpaired                " bubbling text  
-     bling/vim-airline                   " status line  
-     vim-scripts/Marks-Browser           " browse all mark in a window  
-     vim-scripts/matchit.zip             " enhance % matching  
-     scrooloose/syntastic                " syntax checking  
-     vim-scripts/ShowMarks7              " visual representation of marks  
-     vim-scripts/surround.vim            " all about surroundings  
-     vim-scripts/Tagbar                  " browsing the tags of source code  
-     vim-scripts/The-NERD-Commenter      " commenter for the nerd  
-     ctrlpvim/ctrlp.vim                  " finder for Vim.  
-     shougo/unite.vim                    " !UNITE  
-     shougo/vimfiler.vim                 " file explorer  
-     shougo/neosnippet.vim               " adds snippet support to Vim  
-     shougo/neosnippet-snippets          " The standard snippets repository for neosnippet  
-     shougo/neoinclude.vim               " the framework of neocomplete  
-     shougo/context_filetype.vim         " filetype for neocomplete  
-     shougo/neocomplete.vim              " keyword completion with cache  
-     shougo/vinarise.vim                 " Hex editor  
+  altercation/vim-colors-solarized " Solarized color scheme
+  vim-airline/vim-airline-themes   " airline themes
+  junegunn/vim-peekaboo            " show the contents of the registers on the sidebar
+  tpope/vim-unimpaired             " Numerous bracket mappings
+  bling/vim-airline                " Powerline status line plugin
+  godlygeek/tabular                " line up text according to pattern
+  scrooloose/syntastic             " syntax
+  sjl/gundo.vim                    " visual undo tree
+  tommcdo/vim-exchange             " exchange text
+  vim-scripts/matchit.zip          " enhance % match
+  vim-scripts/ShowMarks7           " add visual effects to marks
+  vim-scripts/surround.vim         " modify surroundings of text
+  vim-scripts/loremipsum           " generate lorem Ipsum
+  vim-latex/vim-latex              " Work with latex
+  vim-scripts/Tagbar               " Tag list
+  Konfekt/FastFold                 " Speed up Vim by updateing folds only when called-for
+  vim-scripts/The-NERD-Commenter   " make commenting task easier
+  ctrlpvim/ctrlp.vim               " search through files/buffers/MRU
+  ap/vim-css-color                 " Highlight Hex color pallets
+  Valloric/YouCompleteMe,          " A code-completion engine for Vim
+  SirVer/ultisnips                 " the ultimate solution for snippets in Vim
+  honza/vim-snippets               " vim-snipmate & ultisnips default snippets
    -------------------------------------------------------------
