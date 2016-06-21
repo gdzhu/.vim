@@ -42,7 +42,7 @@ call plug#begin($VIMDIR.'/bundle') "{{{
   Plug 'vim-scripts/The-NERD-Commenter'   " make commenting task easier
   Plug 'ctrlpvim/ctrlp.vim'               " search through files/buffers/MRU
   Plug 'ap/vim-css-color'                 " Highlight Hex color pallets
-  Plug 'Valloric/YouCompleteMe',          " A code-completion engine for Vim
+  Plug 'Valloric/YouCompleteMe',
         \{ 'do': './install.py' }
   Plug 'SirVer/ultisnips'                 " the ultimate solution for snippets in Vim
         \| Plug 'honza/vim-snippets'      " vim-snipmate & ultisnips default snippets
