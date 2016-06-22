@@ -45,7 +45,7 @@ call plug#begin($VIMDIR.'/bundle') "{{{
   Plug 'Valloric/YouCompleteMe',
         \{ 'do': './install.py' }
   Plug 'SirVer/ultisnips'                 " the ultimate solution for snippets in Vim
-        \| Plug 'honza/vim-snippets'      " vim-snipmate & ultisnips default snippets
+  Plug 'honza/vim-snippets'               " vim-snipmate & ultisnips default snippets
 call plug#end()
 " }}}
 
