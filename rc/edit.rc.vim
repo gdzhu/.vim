@@ -32,7 +32,6 @@ set hidden
 set infercase
 
 " set foldmethod=expr
-set foldmethod=syntax
 set foldmethod=manual
 " Show folding level.
 set foldcolumn=3
@@ -40,6 +39,11 @@ set fillchars=vert:\|
 " set commentstring=%s
 " Enable folding.
 set foldenable
+" default open all folds
+set foldlevelstart=20
+" Note, perl automatically sets foldmethod in the syntax file
+autocmd Syntax c,cpp,vim,xml,html,xhtml setlocal foldmethod=syntax
+autocmd Syntax c,cpp,vim,xml,html,xhtml,perl normal zR
 
 " Use grep.
 set grepprg=grep\ -inH

@@ -23,6 +23,9 @@ if empty(glob(s:plugfile))
 endif
 
 call plug#begin($VIMDIR.'/bundle') "{{{
+  Plug 'tpope/vim-endwise'                " helps to end certain structures automatically
+  Plug 'tpope/vim-commentary'             " Comment stuff out
+  Plug 'terryma/vim-expand-region'        " visually select increasingly larger regions of text
   Plug 'altercation/vim-colors-solarized' " Solarized color scheme
   Plug 'vim-airline/vim-airline-themes'   " airline themes
   Plug 'junegunn/vim-peekaboo'            " show the contents of the registers on the sidebar
@@ -39,7 +42,7 @@ call plug#begin($VIMDIR.'/bundle') "{{{
   Plug 'vim-latex/vim-latex'              " Work with latex
   Plug 'vim-scripts/Tagbar'               " Tag list
   Plug 'Konfekt/FastFold'                 " Speed up Vim by updateing folds only when called-for
-  Plug 'vim-scripts/The-NERD-Commenter'   " make commenting task easier
+"  Plug 'vim-scripts/The-NERD-Commenter'   " make commenting task easier
   Plug 'ctrlpvim/ctrlp.vim'               " search through files/buffers/MRU
   Plug 'ap/vim-css-color'                 " Highlight Hex color pallets
   Plug 'Valloric/YouCompleteMe',
