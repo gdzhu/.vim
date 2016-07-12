@@ -22,6 +22,27 @@ if empty(glob(s:plugfile))
   silent exec '!curl -fLo' s:plugfile '--create-dirs' s:giturl
 endif
 
+" build YouCompleteMe according to platform" {{{
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+
+  if a:info.status == 'installed' || a:info.force
+    if has("unix")
+      let s:uname = system("uname")
+      if s:uname == "Darwin\n"
+        !./install.py --clang-completer --tern-completer
+      else
+        !./install.py
+      endif
+    endif
+
+  endif
+endfunction
+"}}}
+
 call plug#begin($VIMDIR.'/bundle') "{{{
   Plug 'tpope/vim-endwise'                " helps to end certain structures automatically
   Plug 'tpope/vim-commentary'             " Comment stuff out
@@ -46,7 +67,7 @@ call plug#begin($VIMDIR.'/bundle') "{{{
   Plug 'ctrlpvim/ctrlp.vim'               " search through files/buffers/MRU
   Plug 'ap/vim-css-color'                 " Highlight Hex color pallets
   Plug 'Valloric/YouCompleteMe',
-        \{ 'do': './install.py' }
+        \{ 'do': function('BuildYCM')}
   Plug 'SirVer/ultisnips'                 " the ultimate solution for snippets in Vim
   Plug 'honza/vim-snippets'               " vim-snipmate & ultisnips default snippets
 call plug#end()
