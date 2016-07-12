@@ -182,7 +182,7 @@ let g:ycm_filetype_blacklist = {
       \ 'gitcommit' : 1,
       \}
 
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_complete_in_comments=1
 let g:ycm_min_num_of_chars_for_completion=2
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -190,7 +190,7 @@ nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 
 let g:ctrlp_match_window = 'top,order:ttb,min:10,max:20'
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.cache/*        " Linux/MacOSX
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_open_single_match = ['buffer tags', 'buffer']
 let g:ctrlp_use_caching = 1

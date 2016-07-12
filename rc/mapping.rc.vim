@@ -58,7 +58,7 @@ nnoremap <silent> <leader>ss :CtrlPBuffer<CR>
 nnoremap <silent> <C-P> :CtrlPBuffer<CR>
 
 " Move around windows beyond tabs
-nnoremap <silent> <S-Tab> <C-w>w
+" nnoremap <silent> <S-Tab> <C-w>w
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
