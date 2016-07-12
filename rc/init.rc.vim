@@ -67,6 +67,8 @@ call plug#begin($VIMDIR.'/bundle') "{{{
   Plug 'ap/vim-css-color'                 " Highlight Hex color pallets
   Plug 'Valloric/YouCompleteMe',
         \{ 'do': function('BuildYCM')}
+  Plug 'rdnetto/YCM-Generator',
+        \{ 'branch': 'stable'}
   Plug 'SirVer/ultisnips'                 " the ultimate solution for snippets in Vim
   Plug 'honza/vim-snippets'               " vim-snipmate & ultisnips default snippets
 call plug#end()
