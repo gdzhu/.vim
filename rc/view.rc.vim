@@ -44,7 +44,9 @@ set wildoptions=tagfile
 set spelllang=en_us
 
 " Completion setting.
-set completeopt=menuone,preview
+set completeopt=menuone
+set completeopt=longest
+set completeopt-=preview
 " Don't complete from other buffer.
 set complete=.
 " Set popup menu max height.
