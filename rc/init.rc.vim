@@ -54,6 +54,7 @@ call plug#begin($VIMDIR.'/bundle') "{{{
   Plug 'bling/vim-airline'                " Powerline status line plugin
   Plug 'godlygeek/tabular'                " line up text according to pattern
   Plug 'scrooloose/syntastic'             " syntax
+  Plug 'mattn/emmet-vim'                  " html & CSS
   Plug 'sjl/gundo.vim'                    " visual undo tree
   Plug 'tommcdo/vim-exchange'             " exchange text
   Plug 'vim-scripts/matchit.zip'          " enhance % match
@@ -66,7 +67,7 @@ call plug#begin($VIMDIR.'/bundle') "{{{
   Plug 'ctrlpvim/ctrlp.vim'               " search through files/buffers/MRU
   Plug 'ap/vim-css-color'                 " Highlight Hex color pallets
   Plug 'Valloric/YouCompleteMe',
-        \{ 'do': function('BuildYCM')}
+        \ { 'do': function('BuildYCM')}
   Plug 'SirVer/ultisnips'                 " the ultimate solution for snippets in Vim
   Plug 'honza/vim-snippets'               " vim-snipmate & ultisnips default snippets
 call plug#end()

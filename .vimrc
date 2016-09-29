@@ -2,9 +2,7 @@
 scriptencoding utf-8
 set encoding=utf-8
 
-if &compatible
-    set nocompatible
-endif
+set nocompatible
 
 function! s:sourcerc(path)
   execute 'source' fnameescape(expand('~/.vim/rc/' . a:path))
