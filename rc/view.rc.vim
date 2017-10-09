@@ -93,6 +93,7 @@ set showmode
 set ruler
 " Show line number
 set nu
+set rnu
 " Include search
 set incsearch
 " Highlight search things
