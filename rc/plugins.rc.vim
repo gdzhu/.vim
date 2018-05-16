@@ -32,22 +32,6 @@ let g:airline#extension#whitespace#enabled = 1
 
 
 """"""""""""""""""""""""""""""
-" Tagbar
-""""""""""""""""""""""""""""""
-let g:tagbar_ctags_bin = '/usr/bin/ctags'
-let g:tagbar_autoshowtag = 1
-let g:tagbar_width = 30
-let g:tagbar_compact = 1
-let g:tagbar_show_visibility = 1
-let g:tagbar_expand = 1
-
-" au BufEnter * nested :call tagbar#autoopen(0)
-
-" " switch to main edit buffer
-" autocmd VimEnter * nested sb "@%"
-
-
-""""""""""""""""""""""""""""""
 " showmarks setting
 """"""""""""""""""""""""""""""
 " Enable ShowMarks
@@ -70,44 +54,12 @@ highlight ShowMarksHLo ctermfg=NONE ctermbg=blue cterm=bold guifg=NONE guibg=lig
 highlight ShowMarksHLm ctermfg=NONE ctermbg=blue cterm=bold guifg=NONE guibg=lightblue gui=bold
 
 """"""""""""""""""""""""""""""
-" Visual
-""""""""""""""""""""""""""""""
-"Basically you press * or # to search for the current selection
-vnoremap <silent> * :call VisualSearch('f')<CR>
-vnoremap <silent> # :call VisualSearch('b')<CR>
-
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " cscope setting
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" if has("cscope")
-"   set csprg=/usr/bin/cscope
-"   set csto=1
-"   set cst
-"   set nocsverb
-"   " add any database in current directory
-"   if filereadable("cscope.out")
-"       cs add cscope.out
-"   endif
-"   set csverb
-" endif
-"
-" nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-" nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-" nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-" nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-" nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-" nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-" nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-" nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-
-""""""""""""""""""""""""""""""
 " Gundo setting
 """"""""""""""""""""""""""""""
 let g:gundo_width = 40
 let g:gundo_preview_height = 15
 let g:gundo_right = 1
 let g:gundo_preview_bottom = 1
-
 
 """"""""""""""""""""""""""""""
 " exchange.vim
@@ -117,24 +69,6 @@ nmap cx <Plug>(Exchange)
 vmap X <Plug>(Exchange)
 nmap cxc <Plug>(ExchangeClear)
 nmap cxx <Plug>(ExchangeLine)
-
-""""""""""""""""""""""""""""""
-" CTRL_P
-""""""""""""""""""""""""""""""
-
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-
-
-" """"""""""""""""""""""""""""""
-" " FastFold
-" """"""""""""""""""""""""""""""
-"
-"
-"     nmap <F5> <Plug>(FastFoldUpdate)
-"   let g:fastfold_savehook = 1
-
 
 """"""""""""""""""""""""""""""
 " Vim-Latex
@@ -167,7 +101,6 @@ let g:Tex_ViewRule_pdf = 'open -a Preview.app'
 """"""""""""""""""""""""""""""
 au FileType markdown setlocal shell=bash\ -i
 
-
 """"""""""""""""""""""""""""""
 " Snippets
 """"""""""""""""""""""""""""""
@@ -184,16 +117,44 @@ let g:ycm_filetype_blacklist = {
 
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_complete_in_comments=1
+let g:ycm_confirm_extra_conf=0
 let g:ycm_collect_identifiers_from_tags_files=1
 let g:ycm_seed_identifiers_with_syntax=1
-let g:ycm_confirm_extra_conf=0
+let g:ycm_cache_omnifunc=0
 let g:ycm_min_num_of_chars_for_completion=2
+let g:ycm_register_as_syntastic_checker = 0
+"let g:ycm_auto_trigger=0
+
+
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 
+""""""""""""""""""""""""""""""
+" fzf
+""""""""""""""""""""""""""""""
 
-let g:ctrlp_match_window = 'top,order:ttb,min:10,max:20'
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.cache/*        " Linux/MacOSX
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_open_single_match = ['buffer tags', 'buffer']
-let g:ctrlp_use_caching = 1
+
+" FZF (replaces Ctrl-P, FuzzyFinder and Command-T)
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>t :Files<CR>
+nmap <Leader>r :Tags<CR>
+nmap <Leader>a :Ag<CR>
+
+
+" Use incsearch.vim to highlight as I search
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
+
+
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --ignore-case\ --vimgrep
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif

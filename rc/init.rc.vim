@@ -35,7 +35,7 @@ function! BuildYCM(info)
       if s:uname == "Darwin\n"
         !./install.py --clang-completer --tern-completer
       else
-        !./install.py
+        !./install.py --clang-completer
       endif
     endif
 
@@ -44,32 +44,53 @@ endfunction
 "}}}
 
 call plug#begin($VIMDIR.'/bundle') "{{{
-  Plug 'tpope/vim-endwise'                " helps to end certain structures automatically
-  Plug 'tpope/vim-commentary'             " Comment stuff out
-  Plug 'terryma/vim-expand-region'        " visually select increasingly larger regions of text
+  """ gui
   Plug 'altercation/vim-colors-solarized' " Solarized color scheme
   Plug 'vim-airline/vim-airline-themes'   " airline themes
-  Plug 'junegunn/vim-peekaboo'            " show the contents of the registers on the sidebar
-  Plug 'tpope/vim-unimpaired'             " Numerous bracket mappings
   Plug 'bling/vim-airline'                " Powerline status line plugin
-  Plug 'godlygeek/tabular'                " line up text according to pattern
-  Plug 'scrooloose/syntastic'             " syntax
-  Plug 'mattn/emmet-vim'                  " html & CSS
-  Plug 'sjl/gundo.vim'                    " visual undo tree
-  Plug 'tommcdo/vim-exchange'             " exchange text
-  Plug 'vim-scripts/matchit.zip'          " enhance % match
   Plug 'vim-scripts/ShowMarks7'           " add visual effects to marks
-  Plug 'vim-scripts/surround.vim'         " modify surroundings of text
+  Plug 'airblade/vim-gitgutter'           " list git changes in file
+
+  """ edit
+  Plug 'junegunn/vim-peekaboo'            " show the contents of the registers on the sidebar
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install all' }
+  Plug 'junegunn/fzf.vim'
+  Plug 'tpope/vim-unimpaired'             " Numerous bracket mappings
+  Plug 'tpope/vim-commentary'             " Comment stuff out
+  Plug 'tpope/vim-endwise'                " helps to end certain structures automatically
+  Plug 'tpope/vim-fugitive'               " git aliases
+  Plug 'tpope/vim-surround'               " modify surroundings of text
+  Plug 'tpope/vim-repeat'                 " repeat last mapped command with dot
+  Plug 'sjl/gundo.vim'                    " visual undo tree
   Plug 'vim-scripts/loremipsum'           " generate lorem Ipsum
-  Plug 'vim-latex/vim-latex'              " Work with latex
-  Plug 'vim-scripts/Tagbar'               " Tag list
-  Plug 'Konfekt/FastFold'                 " Speed up Vim by updateing folds only when called-for
-  Plug 'ctrlpvim/ctrlp.vim'               " search through files/buffers/MRU
+  Plug 'vim-scripts/matchit.zip'          " enhance % match
+  Plug 'godlygeek/tabular'                " line up text according to pattern
+  Plug 'tommcdo/vim-exchange'             " exchange text
   Plug 'ap/vim-css-color'                 " Highlight Hex color pallets
+
+  """ Auto complete
   Plug 'Valloric/YouCompleteMe',
-        \ { 'do': function('BuildYCM')}
+        \ { 'do': function('BuildYCM') }
+  Plug 'rdnetto/YCM-Generator',
+       \ { 'branch': 'stable'}
   Plug 'SirVer/ultisnips'                 " the ultimate solution for snippets in Vim
   Plug 'honza/vim-snippets'               " vim-snipmate & ultisnips default snippets
+
+  Plug 'w0rp/ale'                         " Asynchronous Lint Engine
+  Plug 'sheerun/vim-polyglot'             " Syntax
+  Plug 'mileszs/ack.vim'                  " Search with ag
+  Plug 'tpope/vim-sleuth'                 " Auto detect tabstop
+  Plug 'wellle/targets.vim'               " expand the default 'inside/arround object' operation
+  Plug 'haya14busa/incsearch.vim'         " increamental search
+  Plug 'phamer/AnsiEsc'                   " color escape
+
+"  Plug 'terryma/vim-expand-region'        " visually select increasingly larger regions of text
+"  Plug 'scrooloose/syntastic'             " syntax
+"  Plug 'mattn/emmet-vim'                  " html & CSS
+  Plug 'vim-latex/vim-latex'              " Work with latex
+"  Plug 'vim-scripts/Tagbar'               " Tag list
+"  Plug 'Konfekt/FastFold'                 " Speed up Vim by updateing folds only when called-for
+"  Plug 'ctrlpvim/ctrlp.vim'               " search through files/buffers/MRU
 call plug#end()
 " }}}
 

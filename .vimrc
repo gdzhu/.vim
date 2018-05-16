@@ -40,8 +40,18 @@ call s:sourcerc('functions.rc.vim')
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <F4> :mksession! $CACHE/vim_session <cr> " Quick write session with F2
-map <F5> :source $CACHE/vim_session <cr>     " And load session with F3
+map <F4> :mksession! $CACHE/vim_session <cr> " Quick write session with F4
+map <F5> :source $CACHE/vim_session <cr>     " And load session with F5
+" Automatically save the current session whenever vim is closed
+" set sessionoptions=buffers
+" autocmd VimLeave * mksession! $CACHE/shutdown_session
+" autocmd VimEnter * nested
+"       \ if !argc() && (line2byte('$') == -1)
+"       \ | source $CACHE/shutdown_session
+"       \ |endif
+"       \ | autocmd!
+
+
 " Switch between Hex and normal mode
 noremap <F8> <Esc>:call HexMe()<CR>
 nmap <F12> <Esc>:!ctags -R *<CR>

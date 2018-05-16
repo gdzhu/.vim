@@ -44,18 +44,13 @@ cnoremap <C-y>          <C-r>*
 nnoremap <silent> <leader>cd :<C-u>call ChangeBufferDir()<CR>
 " Toggle relativenumber.
 nnoremap <silent> <leader>nu :<C-u>call ToggleOption('relativenumber')<CR>
-nnoremap <silent> <leader>sc :<C-u>call ToggleOption('spell')<CR>
+nnoremap <silent> <leader>sp :<C-u>call ToggleOption('spell')<CR>
 nnoremap <silent> <leader>p :<C-u>call ToggleOption('paste')<CR>
 
 nnoremap <silent> <leader>v  <C-w>v
 nnoremap <silent> <leader>sc  :<C-u>call SmartClose(0)<CR>
 nnoremap <silent> <leader>sd  :<C-u>call SmartClose(1)<CR>
 nnoremap <silent> <leader>so  :<C-u>only<CR>
-
-" use ctrlp instead
-" nnoremap <silent> <leader>sb :<C-u>call ShowBuffer()<CR>
-nnoremap <silent> <leader>ss :CtrlPBuffer<CR>
-nnoremap <silent> <C-P> :CtrlPBuffer<CR>
 
 " Move around windows beyond tabs
 " nnoremap <silent> <S-Tab> <C-w>w
@@ -97,17 +92,28 @@ command! -nargs=* Stab call Stab()
 " Visually select the text that was last edited/pasted
 nnoremap gV `[v`]
 
-" Tabularize is a plugin for alignment
-autocmd VimEnter *
-\ if exists(":Tabularize")
-\|   nmap <Leader>a= :Tabularize /=<CR>
-\|   vmap <Leader>a= :Tabularize /=<CR>
-\|   nmap <Leader>a: :Tabularize /:\zs<CR>
-\|   vmap <Leader>a: :Tabularize /:\zs<CR>
-\| endif
-
 inoremap <silent> <Bar> <Bar><Esc>:call AutoAlignBar()<CR>a
 
 " Visual undo history & undo branch
 nnoremap <Leader>un :GundoToggle<CR>
+
+" Use the space key to toggle folds
+nnoremap <space> za
+vnoremap <space> zf
+
+" Move between open buffers.
+nmap <C-n> :bnext<CR>
+nmap <C-p> :bprev<CR>
+
+" Quickly fix spelling errors choosing the first result
+nmap <Leader>z z=1<CR><CR>
+
+" unmap q: combination
+nmap q: <silent>
+""""""""""""""""""""""""""""""
+" Visual
+""""""""""""""""""""""""""""""
+"Basically you press * or # to search for the current selection
+vnoremap <silent> * :call VisualSearch('f')<CR>
+vnoremap <silent> # :call VisualSearch('b')<CR>
 
