@@ -19,26 +19,47 @@ plugin list
 
 
    -------------------------------------------------------------
-        altercation/vim-colors-solarized " Solarized color scheme
-        vim-airline/vim-airline-themes   " airline themes
-        junegunn/vim-peekaboo            " show the contents of the registers on the sidebar
-        tpope/vim-unimpaired             " Numerous bracket mappings
-        bling/vim-airline                " Powerline status line plugin
-        godlygeek/tabular                " line up text according to pattern
-        scrooloose/syntastic             " syntax
-        sjl/gundo.vim                    " visual undo tree
-        tommcdo/vim-exchange             " exchange text
-        vim-scripts/matchit.zip          " enhance % match
-        vim-scripts/ShowMarks7           " add visual effects to marks
-        vim-scripts/surround.vim         " modify surroundings of text
-        vim-scripts/loremipsum           " generate lorem Ipsum
-        vim-latex/vim-latex              " Work with latex
-        vim-scripts/Tagbar               " Tag list
-        Konfekt/FastFold                 " Speed up Vim by updateing folds only when called-for
-        vim-scripts/The-NERD-Commenter   " make commenting task easier
-        ctrlpvim/ctrlp.vim               " search through files/buffers/MRU
-        ap/vim-css-color                 " Highlight Hex color pallets
-        Valloric/YouCompleteMe,          " A code-completion engine for Vim
-        SirVer/ultisnips                 " the ultimate solution for snippets in Vim
-        honza/vim-snippets               " vim-snipmate & ultisnips default snippets
+         altercation/vim-colors-solarized " Solarized color scheme
+         vim-airline/vim-airline-themes   " airline themes
+         bling/vim-airline                " Powerline status line plugin
+         vim-scripts/ShowMarks7           " add visual effects to marks
+         airblade/vim-gitgutter           " list git changes in file
+
+         """ edit
+         junegunn/vim-peekaboo            " show the contents of the registers on the sidebar
+         junegunn/fzf                     " fzf command-line fuzzy finder
+         junegunn/fzf.vim                 " fzf for vim
+         tpope/vim-unimpaired             " Numerous bracket mappings
+         tpope/vim-commentary             " Comment stuff out
+         tpope/vim-endwise                " helps to end certain structures automatically
+         tpope/vim-fugitive               " git aliases
+         tpope/vim-surround               " modify surroundings of text
+         tpope/vim-repeat                 " repeat last mapped command with dot
+         sjl/gundo.vim                    " visual undo tree
+         vim-scripts/loremipsum           " generate lorem Ipsum
+         vim-scripts/matchit.zip          " enhance % match
+         godlygeek/tabular                " line up text according to pattern
+         tommcdo/vim-exchange             " exchange text
+         ap/vim-css-color                 " Highlight Hex color pallets
+
+         """ Auto complete
+         Valloric/YouCompleteMe           " auto complete
+         rdnetto/YCM-Generator            " auto complete
+         SirVer/ultisnips                 " the ultimate solution for snippets in Vim
+         honza/vim-snippets               " vim-snipmate & ultisnips default snippets
+         w0rp/ale                         " Asynchronous Lint Engine
+         sheerun/vim-polyglot             " Syntax
+         mileszs/ack.vim                  " Search with ag
+         tpope/vim-sleuth                 " Auto detect tabstop
+         wellle/targets.vim               " expand the default 'inside/arround object' operation
+         haya14busa/incsearch.vim         " increamental search
+         'phamer/AnsiEsc'                   " color escape
+
+         vim-latex/vim-latex              " Work with latex
+         " terryma/vim-expand-region      " visually select increasingly larger regions of text
+         " scrooloose/syntastic           " syntax
+         " mattn/emmet-vim                " html & CSS
+         " vim-scripts/Tagbar             " Tag list
+         " Konfekt/FastFold               " Speed up Vim by updateing folds only when called-for
+         " ctrlpvim/ctrlp.vim             " search through files/buffers/MRU
    -------------------------------------------------------------
